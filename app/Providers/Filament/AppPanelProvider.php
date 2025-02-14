@@ -24,12 +24,14 @@ class AppPanelProvider extends PanelProvider
   {
     return $panel
       ->id('app')
-//            ->domain('dokar-digi.ummi-ti-22.site')
       ->spa()
       ->path('')
       ->unsavedChangesAlerts()
       ->sidebarCollapsibleOnDesktop()
       ->login()
+      ->passwordReset()
+      ->emailVerification()
+      ->profile()
       ->colors([
         'primary' => Color::Amber,
       ])
