@@ -27,7 +27,7 @@ const AuthenticatedNavBar = () => {
       w={collapsed ? 80 : 400}
       bg="gray.0"
       display={{
-        xs: 'none',
+        base: 'none',
         md: 'flex',
       }}
     >
