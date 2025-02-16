@@ -1,25 +1,34 @@
 import { UserMenu } from '@/Components/Index.jsx';
 import NavBarDrawer from '@/Components/NavBarDrawer.jsx';
-import { usePage } from '@inertiajs/react';
-import { Flex } from '@mantine/core';
+import { Box, Divider, Flex } from '@mantine/core';
 
 const AuthenticatedHeader = () => {
-  const user = usePage();
+  // const user = usePage();
 
   return (
-    <Flex
-      w="100%"
-      p={16}
-      justify={{
-        base: 'space-between',
-        sm: 'end',
+    <Box
+      pos="sticky"
+      top={0}
+      style={{
+        zIndex: 3,
       }}
-      bg="gray.0"
     >
-      <NavBarDrawer />
+      <Flex
+        w="100%"
+        p={16}
+        justify={{
+          base: 'space-between',
+          sm: 'end',
+        }}
+        bg="gray.0"
+      >
+        <NavBarDrawer />
 
-      <UserMenu />
-    </Flex>
+        <UserMenu />
+      </Flex>
+
+      <Divider />
+    </Box>
   );
 };
 

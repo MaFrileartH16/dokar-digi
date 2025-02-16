@@ -4,7 +4,7 @@ import {
   PageHeadings,
 } from '@/Components/Index.jsx';
 import { BaseLayout } from '@/Layouts/Index.jsx';
-import { Box, Divider, Flex, Stack } from '@mantine/core';
+import { Box, Flex, Stack } from '@mantine/core';
 
 const AuthenticatedLayout = (props) => {
   const { pageHeadings = {} } = props; // Destructure and give default empty object
@@ -17,8 +17,6 @@ const AuthenticatedLayout = (props) => {
 
         <Stack gap={0} w="100%">
           <AuthenticatedHeader />
-
-          <Divider />
 
           <Box
             flex={1}

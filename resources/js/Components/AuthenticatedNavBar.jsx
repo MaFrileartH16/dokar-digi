@@ -62,6 +62,12 @@ const AuthenticatedNavBar = () => {
 
   return (
     <Stack
+      pos="sticky"
+      top={0}
+      h="100vh"
+      style={{
+        zIndex: 3,
+      }}
       gap={0}
       w={collapsed ? 80 : 400}
       bg="gray.0"
@@ -76,7 +82,6 @@ const AuthenticatedNavBar = () => {
             <ActionIcon variant="transparent">
               <IconArchive size={32} />
             </ActionIcon>
-
             <Title order={3}>Dokar Digi</Title>
           </Group>
         )}

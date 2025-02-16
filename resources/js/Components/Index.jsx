@@ -1,6 +1,5 @@
 import AuthenticatedHeader from '@/Components/AuthenticatedHeader.jsx';
 import AuthenticatedNavBar from '@/Components/AuthenticatedNavBar.jsx';
-import Header from '@/Components/Header.jsx';
 import PageHeadings from '@/Components/PageHeadings.jsx';
 import PasswordInput from '@/Components/PasswordInput.jsx';
 import ScrollToTop from '@/Components/ScrollToTop.jsx';
@@ -10,7 +9,6 @@ import UserMenu from '@/Components/UserMenu.jsx';
 export {
   AuthenticatedHeader,
   AuthenticatedNavBar,
-  Header,
   PageHeadings,
   PasswordInput,
   ScrollToTop,
