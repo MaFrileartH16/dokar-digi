@@ -14,6 +14,8 @@ import {
   IconChevronRight,
   IconDashboard,
   IconDashboardFilled,
+  IconFile,
+  IconFileFilled,
   IconShieldLock,
   IconShieldLockFilled,
   IconUser,
@@ -40,7 +42,13 @@ const navItems = [
     leftSection: (isActive) =>
       isActive ? <IconShieldLockFilled /> : <IconShieldLock />,
     route: 'roles',
-    onClick: () => router.get(route('roles')),
+    onClick: () => router.get(route('roles.index')),
+  },
+  {
+    label: 'Dokumen',
+    leftSection: (isActive) => (isActive ? <IconFileFilled /> : <IconFile />),
+    route: 'documents',
+    onClick: () => router.get(route('documents.index')),
   },
 ];
 

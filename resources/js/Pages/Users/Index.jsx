@@ -5,10 +5,6 @@ const Index = (props) => {
     <AuthenticatedLayout
       title="Daftar Pengguna"
       notification={props.notification}
-      pageHeadings={{
-        title: 'Daftar Pengguna',
-        description: 'Kelola pengguna yang terdaftar di aplikasi ini.',
-      }}
     ></AuthenticatedLayout>
   );
 };

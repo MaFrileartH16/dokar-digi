@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 const Dashboard = (props) => {
   return (
     <AuthenticatedLayout
-      title="Dashboard"
+      title="Dasbor"
       notification={props.notification}
     ></AuthenticatedLayout>
   );

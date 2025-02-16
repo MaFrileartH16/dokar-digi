@@ -7,6 +7,9 @@ import { BaseLayout } from '@/Layouts/Index.jsx';
 import { Box, Divider, Flex, Stack } from '@mantine/core';
 
 const AuthenticatedLayout = (props) => {
+  const { pageHeadings = {} } = props; // Destructure and give default empty object
+  const { breadcrumbs = [], description } = pageHeadings; // Safe destructuring
+
   return (
     <BaseLayout title={props.title} notification={props.notification}>
       <Flex flex={1}>
@@ -26,9 +29,9 @@ const AuthenticatedLayout = (props) => {
             }}
           >
             <PageHeadings
-              title={props.pageHeadings.title}
-              breadcrumbs={props.pageHeadings.breadcrumbs}
-              description={props.pageHeadings.description}
+              title={props.title}
+              breadcrumbs={breadcrumbs} // Pass safely
+              description={description} // Pass safely
             />
 
             {props.children}

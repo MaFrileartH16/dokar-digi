@@ -1,1 +1,0 @@
-import{j as a}from"./app-aCSpCk2N.js";import{A as i}from"./AuthenticatedLayout-DaDvL5QW.js";import"./BaseLayout-RH445z8Q.js";const r=t=>a.jsx(i,{title:"Daftar Pengguna",notification:t.notification,pageHeadings:{title:"Daftar Pengguna",description:"Kelola pengguna yang terdaftar di aplikasi ini."}});export{r as default};

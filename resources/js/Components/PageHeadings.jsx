@@ -2,9 +2,10 @@ import { router } from '@inertiajs/core';
 import { Anchor, Breadcrumbs, Text, Title } from '@mantine/core';
 import { IconChevronRight } from '@tabler/icons-react';
 
-const PageHeadings = ({ title, breadcrumbs, description }) => (
+const PageHeadings = ({ title, breadcrumbs = [], description }) => (
   <>
-    {breadcrumbs?.length > 0 && (
+    {/* Breadcrumbs is optional and will only render if breadcrumbs is provided */}
+    {breadcrumbs.length > 0 && (
       <Breadcrumbs
         styles={{
           separator: {
@@ -34,6 +35,7 @@ const PageHeadings = ({ title, breadcrumbs, description }) => (
       {title}
     </Title>
 
+    {/* Description is optional and will render only if description is provided */}
     {description && <Text c="gray">{description}</Text>}
   </>
 );

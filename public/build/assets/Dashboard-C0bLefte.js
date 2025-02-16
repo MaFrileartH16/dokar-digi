@@ -1,0 +1,1 @@
+import{j as o}from"./app-B18kRq4R.js";import{A as i}from"./AuthenticatedLayout--_MExhk_.js";import"./BaseLayout-CufUq5s2.js";const n=t=>o.jsx(i,{title:"Dasbor",notification:t.notification});export{n as default};
