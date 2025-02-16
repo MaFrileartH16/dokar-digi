@@ -4,6 +4,7 @@ import {
   Button,
   createTheme,
   Image,
+  Menu,
   Modal,
   MultiSelect,
   Notification,
@@ -54,10 +55,15 @@ const theme = createTheme({
     Button: Button.extend({
       styles: {
         root: {
+          padding: 16,
           height: 48,
         },
         label: {
           fontSize: 16,
+          marginLeft: 16,
+        },
+        section: {
+          margin: 0,
         },
       },
     }),
@@ -200,6 +206,25 @@ const theme = createTheme({
         },
         description: {
           fontSize: 16,
+        },
+      },
+    }),
+    Menu: Menu.extend({
+      styles: {
+        dropdown: {
+          padding: 8,
+        },
+        item: {
+          padding: 16,
+          height: 48,
+        },
+        itemLabel: {
+          fontSize: 16,
+          fontWeight: 500,
+          marginLeft: 16,
+        },
+        itemSection: {
+          margin: 0,
         },
       },
     }),

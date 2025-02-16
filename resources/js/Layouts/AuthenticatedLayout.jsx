@@ -11,8 +11,6 @@ const AuthenticatedLayout = (props) => {
       <Flex flex={1}>
         <AuthenticatedNavBar />
 
-        <Divider orientation="vertical" />
-
         <Stack gap={0} w="100%">
           <AuthenticatedHeader />
 

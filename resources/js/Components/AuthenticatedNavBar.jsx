@@ -54,7 +54,6 @@ const AuthenticatedNavBar = () => {
           <Button
             color="gray"
             leftSection={<IconHome2 />}
-            p={11}
             display="flex"
             fullWidth
             variant="subtle"

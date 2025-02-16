@@ -17,7 +17,7 @@ const ScrollToTop = () => {
           <Tooltip
             label="Scroll to top"
             position="top-end"
-            offset={4}
+            offset={8}
             transitionProps={{ transition: 'fade', duration: 200 }}
           >
             <ActionIcon
