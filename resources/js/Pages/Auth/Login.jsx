@@ -1,9 +1,19 @@
 import { PasswordInput, TextInput } from '@/Components/Index.jsx';
 import BaseLayout from '@/Layouts/BaseLayout.jsx';
+import { router } from '@inertiajs/core';
 import { useForm } from '@inertiajs/react';
-import { ActionIcon, Button, Center, Paper, Stack, Title } from '@mantine/core';
+import {
+  ActionIcon,
+  Button,
+  Center,
+  Divider,
+  Paper,
+  Stack,
+  Title,
+} from '@mantine/core';
 import {
   IconArchive,
+  IconBrandGoogle,
   IconLock,
   IconLockOpen2,
   IconMail,
@@ -103,6 +113,24 @@ const Login = (props) => {
               fullWidth
             >
               Masuk
+            </Button>
+
+            <Divider my={32} label="Atau" labelPosition="center" />
+
+            <Button
+              fullWidth
+              leftSection={<IconBrandGoogle />}
+              color="gray"
+              variant="outline"
+              onClick={() =>
+                router.get(
+                  route('social-account.redirect', {
+                    provider: 'google',
+                  }),
+                )
+              }
+            >
+              Masuk Google
             </Button>
           </Paper>
         </Center>

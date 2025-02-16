@@ -55,7 +55,7 @@ const theme = createTheme({
     Button: Button.extend({
       styles: {
         root: {
-          padding: 16,
+          padding: '0 16px',
           height: 48,
         },
         label: {
