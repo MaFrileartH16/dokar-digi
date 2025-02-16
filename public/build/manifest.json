@@ -1,33 +1,33 @@
 {
-  "_BaseLayout-BvfEAL4D.js": {
-    "file": "assets/BaseLayout-BvfEAL4D.js",
+  "_BaseLayout-Dbd_aVUH.js": {
+    "file": "assets/BaseLayout-Dbd_aVUH.js",
     "name": "BaseLayout",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
   "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-DogBuk6R.js",
+    "file": "assets/Login-BjO1p3p5.js",
     "name": "Login",
     "src": "resources/js/Pages/Auth/Login.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_BaseLayout-BvfEAL4D.js"
+      "_BaseLayout-Dbd_aVUH.js"
     ]
   },
   "resources/js/Pages/Dashboard.jsx": {
-    "file": "assets/Dashboard-BeRUIS_H.js",
+    "file": "assets/Dashboard-Yoe8N4Oz.js",
     "name": "Dashboard",
     "src": "resources/js/Pages/Dashboard.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_BaseLayout-BvfEAL4D.js"
+      "_BaseLayout-Dbd_aVUH.js"
     ]
   },
   "resources/js/Pages/Welcome.jsx": {
-    "file": "assets/Welcome-nddBZvvv.js",
+    "file": "assets/Welcome-BiJeOKZb.js",
     "name": "Welcome",
     "src": "resources/js/Pages/Welcome.jsx",
     "isDynamicEntry": true,
@@ -36,7 +36,7 @@
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-Dg7CbYHI.js",
+    "file": "assets/app-B5elAGWi.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,

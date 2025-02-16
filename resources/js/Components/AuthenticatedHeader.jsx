@@ -1,36 +1,25 @@
+import { UserMenu } from '@/Components/Index.jsx';
+import NavBarDrawer from '@/Components/NavBarDrawer.jsx';
 import { usePage } from '@inertiajs/react';
-import { Avatar, Flex, Menu } from '@mantine/core';
-import { IconLogout, IconSettings, IconUser } from '@tabler/icons-react';
+import { Flex } from '@mantine/core';
 
 const AuthenticatedHeader = () => {
   const user = usePage();
   console.log(user);
 
-  const menuItems = [
-    { label: 'Profil', icon: <IconUser /> },
-    { label: 'Pengaturan', icon: <IconSettings /> },
-    { label: 'Keluar', icon: <IconLogout />, color: 'red' },
-  ];
-
   return (
-    <Flex w="100%" p={16} justify="end" bg="gray.0">
-      <Menu width={200} position="bottom-end" offset={8}>
-        <Menu.Target>
-          <Avatar alt="User" />
-        </Menu.Target>
+    <Flex
+      w="100%"
+      p={16}
+      justify={{
+        base: 'space-between',
+        md: 'end',
+      }}
+      bg="gray.0"
+    >
+      <NavBarDrawer />
 
-        <Menu.Dropdown>
-          {menuItems.map((item, index) => (
-            <Menu.Item
-              key={index}
-              leftSection={item.icon}
-              color={item.color} // Apply color if provided (e.g., for logout)
-            >
-              {item.label}
-            </Menu.Item>
-          ))}
-        </Menu.Dropdown>
-      </Menu>
+      <UserMenu />
     </Flex>
   );
 };

@@ -4,6 +4,7 @@ import Header from '@/Components/Header.jsx';
 import PasswordInput from '@/Components/PasswordInput.jsx';
 import ScrollToTop from '@/Components/ScrollToTop.jsx';
 import TextInput from '@/Components/TextInput.jsx';
+import UserMenu from '@/Components/UserMenu.jsx';
 
 export {
   AuthenticatedHeader,
@@ -12,4 +13,5 @@ export {
   PasswordInput,
   ScrollToTop,
   TextInput,
+  UserMenu,
 };
