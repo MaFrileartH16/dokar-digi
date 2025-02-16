@@ -19,7 +19,10 @@ return [
 
   'allowed_methods' => ['*'],
 
-  'allowed_origins' => ['*'],
+  'allowed_origins' => [
+    'https://dokar-digi.ummi-ti-22.site',
+    'http://localhost:8000',
+  ],
 
   'allowed_origins_patterns' => ['https://dokar-digi.ummi-ti-22.site', 'http://localhost:8000'],
 
@@ -29,6 +32,6 @@ return [
 
   'max_age' => 0,
 
-  'supports_credentials' => true,
+  'supports_credentials' => false,
 
 ];
