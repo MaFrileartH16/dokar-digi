@@ -8,7 +8,7 @@ import {
   Title,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconArchive, IconHome2, IconMenu4 } from '@tabler/icons-react';
+import { IconArchive, IconHome2, IconMenu4, IconX } from '@tabler/icons-react';
 
 const NavBarDrawer = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -36,6 +36,10 @@ const NavBarDrawer = () => {
 
             <Title order={3}>Dokar Digi</Title>
           </Group>
+
+          <ActionIcon variant="subtle" onClick={close} color="gray">
+            <IconX />
+          </ActionIcon>
         </Group>
 
         <Divider />
