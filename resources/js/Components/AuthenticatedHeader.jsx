@@ -7,14 +7,14 @@ const AuthenticatedHeader = () => {
   console.log(user);
 
   const menuItems = [
-    { label: 'Profile', icon: <IconUser /> },
-    { label: 'Settings', icon: <IconSettings /> },
-    { label: 'Logout', icon: <IconLogout />, color: 'red' },
+    { label: 'Profil', icon: <IconUser /> },
+    { label: 'Pengaturan', icon: <IconSettings /> },
+    { label: 'Keluar', icon: <IconLogout />, color: 'red' },
   ];
 
   return (
     <Flex w="100%" p={16} justify="end" bg="gray.0">
-      <Menu width={200} position="bottom-end" offset={8} opened={true}>
+      <Menu width={200} position="bottom-end" offset={8}>
         <Menu.Target>
           <Avatar alt="User" />
         </Menu.Target>
