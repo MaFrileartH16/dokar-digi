@@ -1,0 +1,1 @@
+import{j as o}from"./app-aCSpCk2N.js";import{A as a}from"./AuthenticatedLayout-DaDvL5QW.js";import"./BaseLayout-RH445z8Q.js";const n=t=>o.jsx(a,{title:"Dashboard",notification:t.notification});export{n as default};

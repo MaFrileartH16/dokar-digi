@@ -1,5 +1,7 @@
+import { router, usePage } from '@inertiajs/react';
 import {
   ActionIcon,
+  Box,
   Button,
   Divider,
   Group,
@@ -10,12 +12,41 @@ import {
   IconArchive,
   IconChevronLeft,
   IconChevronRight,
-  IconHome2,
+  IconDashboard,
+  IconDashboardFilled,
+  IconShieldLock,
+  IconShieldLockFilled,
+  IconUser,
+  IconUserFilled,
 } from '@tabler/icons-react';
 import { useState } from 'react';
 
+const navItems = [
+  {
+    label: 'Dasbor',
+    leftSection: (isActive) =>
+      isActive ? <IconDashboardFilled /> : <IconDashboard />,
+    route: 'dashboard',
+    onClick: () => router.get(route('dashboard')),
+  },
+  {
+    label: 'Pengguna',
+    leftSection: (isActive) => (isActive ? <IconUserFilled /> : <IconUser />),
+    route: 'users',
+    onClick: () => router.get(route('users.index')),
+  },
+  {
+    label: 'Peran',
+    leftSection: (isActive) =>
+      isActive ? <IconShieldLockFilled /> : <IconShieldLock />,
+    route: 'roles',
+    onClick: () => router.get(route('roles')),
+  },
+];
+
 const AuthenticatedNavBar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const { url } = usePage();
 
   const toggleCollapse = () => {
     setCollapsed((prev) => !prev);
@@ -28,14 +59,14 @@ const AuthenticatedNavBar = () => {
       bg="gray.0"
       display={{
         base: 'none',
-        md: 'flex',
+        sm: 'flex',
       }}
     >
       <Group gap={0} justify="space-between" p={16}>
         {!collapsed && (
-          <Group>
+          <Group gap={0}>
             <ActionIcon variant="transparent">
-              <IconArchive size={48} />
+              <IconArchive size={32} />
             </ActionIcon>
 
             <Title order={3}>Dokar Digi</Title>
@@ -49,23 +80,45 @@ const AuthenticatedNavBar = () => {
 
       <Divider />
 
-      <Stack spacing={0} flex={1} p={16}>
+      <Box flex={1} p={16}>
         {!collapsed ? (
-          <Button
-            color="gray"
-            leftSection={<IconHome2 />}
-            display="flex"
-            fullWidth
-            variant="subtle"
-          >
-            Dasbor
-          </Button>
+          navItems.map(({ label, route, leftSection, ...props }) => {
+            const isActive = url.includes(route);
+
+            return (
+              <Button
+                key={label}
+                color={isActive ? 'blue' : 'gray'}
+                display="flex"
+                fullWidth
+                variant="subtle"
+                leftSection={leftSection(isActive)}
+                {...props}
+              >
+                {label}
+              </Button>
+            );
+          })
         ) : (
-          <ActionIcon fullWidth variant="subtle" color="gray">
-            <IconHome2 />
-          </ActionIcon>
+          <Box>
+            {navItems.map(({ leftSection, label, route, ...props }) => {
+              const isActive = url.includes(route);
+
+              return (
+                <ActionIcon
+                  key={label}
+                  fullWidth
+                  variant="subtle"
+                  color={isActive ? 'blue' : 'gray'}
+                  {...props}
+                >
+                  {leftSection(isActive)}
+                </ActionIcon>
+              );
+            })}
+          </Box>
         )}
-      </Stack>
+      </Box>
     </Stack>
   );
 };

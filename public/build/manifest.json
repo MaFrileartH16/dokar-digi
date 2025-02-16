@@ -1,33 +1,53 @@
 {
-  "_BaseLayout-CXhUI723.js": {
-    "file": "assets/BaseLayout-CXhUI723.js",
+  "_AuthenticatedLayout-DaDvL5QW.js": {
+    "file": "assets/AuthenticatedLayout-DaDvL5QW.js",
+    "name": "AuthenticatedLayout",
+    "imports": [
+      "resources/js/app.jsx",
+      "_BaseLayout-RH445z8Q.js"
+    ]
+  },
+  "_BaseLayout-RH445z8Q.js": {
+    "file": "assets/BaseLayout-RH445z8Q.js",
     "name": "BaseLayout",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
   "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-BwWVbUSn.js",
+    "file": "assets/Login-DJ2o9Ox1.js",
     "name": "Login",
     "src": "resources/js/Pages/Auth/Login.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_BaseLayout-CXhUI723.js"
+      "_BaseLayout-RH445z8Q.js"
     ]
   },
   "resources/js/Pages/Dashboard.jsx": {
-    "file": "assets/Dashboard-CQOkla04.js",
+    "file": "assets/Dashboard-DaJ8wOjm.js",
     "name": "Dashboard",
     "src": "resources/js/Pages/Dashboard.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_BaseLayout-CXhUI723.js"
+      "_AuthenticatedLayout-DaDvL5QW.js",
+      "_BaseLayout-RH445z8Q.js"
+    ]
+  },
+  "resources/js/Pages/Users/Index.jsx": {
+    "file": "assets/Index-Bk-Q_va4.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Users/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-DaDvL5QW.js",
+      "_BaseLayout-RH445z8Q.js"
     ]
   },
   "resources/js/Pages/Welcome.jsx": {
-    "file": "assets/Welcome-D-woRg79.js",
+    "file": "assets/Welcome-8N0hveWB.js",
     "name": "Welcome",
     "src": "resources/js/Pages/Welcome.jsx",
     "isDynamicEntry": true,
@@ -36,17 +56,18 @@
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-BgKKOhZA.js",
+    "file": "assets/app-aCSpCk2N.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
     "dynamicImports": [
       "resources/js/Pages/Auth/Login.jsx",
       "resources/js/Pages/Dashboard.jsx",
+      "resources/js/Pages/Users/Index.jsx",
       "resources/js/Pages/Welcome.jsx"
     ],
     "css": [
-      "assets/app-BdsGJ9IY.css"
+      "assets/app-EQoY-gLt.css"
     ]
   }
 }

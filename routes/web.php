@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAccountController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,5 +37,6 @@ Route::post('/account/link/{provider}', [SocialAccountController::class, 'link']
 // Rute untuk melepaskan (unlink) akun sosial media
 Route::post('/account/unlink/{provider}', [SocialAccountController::class, 'unlink'])->name('social-account.unlink');
 
+Route::resource('users', UserController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';

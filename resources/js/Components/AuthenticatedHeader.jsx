@@ -5,7 +5,6 @@ import { Flex } from '@mantine/core';
 
 const AuthenticatedHeader = () => {
   const user = usePage();
-  console.log(user);
 
   return (
     <Flex
@@ -13,7 +12,7 @@ const AuthenticatedHeader = () => {
       p={16}
       justify={{
         base: 'space-between',
-        md: 'end',
+        sm: 'end',
       }}
       bg="gray.0"
     >

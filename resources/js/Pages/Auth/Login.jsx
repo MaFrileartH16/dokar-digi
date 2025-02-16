@@ -62,16 +62,17 @@ const Login = (props) => {
       <BaseLayout title="Masuk Akun" notification={props.notification}>
         <Center flex={1} p={16}>
           <Paper bg="gray.0" shadow="none" withBorder p={32} w={480}>
-            <Center mb={16}>
+            <Center>
               <ActionIcon variant="transparent">
                 <IconArchive size={48} />
               </ActionIcon>
             </Center>
+
             <Title align="center" order={2}>
               Masuk Akun
             </Title>
 
-            <Stack gap={32} my={32}>
+            <Stack gap={16} my={16}>
               <TextInput
                 autoFocus
                 value={form.data.email}
@@ -114,7 +115,7 @@ const Login = (props) => {
               Masuk
             </Button>
 
-            <Divider my={32} label="Atau" labelPosition="center" />
+            <Divider my={16} label="Atau" labelPosition="center" />
 
             <Button
               component="a"

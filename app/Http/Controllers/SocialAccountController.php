@@ -11,11 +11,8 @@ class SocialAccountController extends Controller
 {
   public function redirect($provider)
   {
-    return Socialite::driver($provider)
-      ->redirectUrl(route('social-account.callback', ['provider' => $provider]))
-      ->redirect();
+    return Socialite::driver($provider)->redirect();
   }
-
 
   public function callback($provider)
   {
@@ -34,27 +31,23 @@ class SocialAccountController extends Controller
       ->first();
 
     if ($socialAccount) {
-      $user = $socialAccount->user;
-      Auth::login($user, true);
-
+      Auth::login($socialAccount->user, true);
       return redirect('/dashboard')->with('notification', [
         'status' => 'success',
         'title' => 'Berhasil Masuk Akun',
         'message' => 'Selamat datang kembali, ' . Auth::user()->name . '!',
       ]);
-    } else {
-      return redirect('/login')->with('notification', [
-        'status' => 'error',
-        'title' => 'Akun Tidak Ditemukan',
-        'message' => 'Akun sosial media ini belum ditautkan ke akun internal Anda. Harap tautkan terlebih dahulu.',
-      ]);
     }
+
+    return redirect('/login')->with('notification', [
+      'status' => 'error',
+      'title' => 'Akun Tidak Ditemukan',
+      'message' => 'Akun sosial media ini belum ditautkan ke akun internal Anda. Harap tautkan terlebih dahulu.',
+    ]);
   }
 
   public function link($provider)
   {
-    $user = Auth::user();
-
     try {
       $socialUser = Socialite::driver($provider)->user();
     } catch (Exception $e) {
@@ -65,7 +58,7 @@ class SocialAccountController extends Controller
       ]);
     }
 
-    if ($user->socialAccounts()->where('provider', $provider)->exists()) {
+    if (Auth::user()->socialAccounts()->where('provider', $provider)->exists()) {
       return redirect('/dashboard')->with('notification', [
         'status' => 'error',
         'title' => 'Akun Sudah Ditautkan',
@@ -73,7 +66,7 @@ class SocialAccountController extends Controller
       ]);
     }
 
-    $user->socialAccounts()->create([
+    Auth::user()->socialAccounts()->create([
       'provider' => $provider,
       'provider_id' => $socialUser->getId(),
     ]);
@@ -87,8 +80,7 @@ class SocialAccountController extends Controller
 
   public function unlink($provider)
   {
-    $user = Auth::user();
-    $user->socialAccounts()->where('provider', $provider)->delete();
+    Auth::user()->socialAccounts()->where('provider', $provider)->delete();
 
     return redirect('/dashboard')->with('notification', [
       'status' => 'success',

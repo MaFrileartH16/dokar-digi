@@ -19,10 +19,10 @@ const theme = createTheme({
   colors: {
     // 'japanese-indigo': generateColors('#2D3748'),
   },
-  fontFamily: 'Plus Jakarta Sans, serif',
+  fontFamily: 'Fredoka, serif',
   // primaryColor: 'japanese-indigo',
   headings: {
-    fontFamily: 'Plus Jakarta Sans, serif',
+    // fontFamily: 'Plus Jakarta Sans, serif',
     sizes: {
       h1: { fontSize: '44px', fontWeight: '700', lineHeight: '56px' },
       h2: { fontSize: '34px', fontWeight: '600', lineHeight: '48px' },

@@ -1,9 +1,10 @@
 import {
   AuthenticatedHeader,
   AuthenticatedNavBar,
+  PageHeadings,
 } from '@/Components/Index.jsx';
 import { BaseLayout } from '@/Layouts/Index.jsx';
-import { Divider, Flex, Stack } from '@mantine/core';
+import { Box, Divider, Flex, Stack } from '@mantine/core';
 
 const AuthenticatedLayout = (props) => {
   return (
@@ -16,7 +17,22 @@ const AuthenticatedLayout = (props) => {
 
           <Divider />
 
-          {props.children}
+          <Box
+            flex={1}
+            py={32}
+            px={{
+              base: 16,
+              md: 32,
+            }}
+          >
+            <PageHeadings
+              title={props.pageHeadings.title}
+              breadcrumbs={props.pageHeadings.breadcrumbs}
+              description={props.pageHeadings.description}
+            />
+
+            {props.children}
+          </Box>
         </Stack>
       </Flex>
     </BaseLayout>

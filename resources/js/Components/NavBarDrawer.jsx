@@ -61,7 +61,7 @@ const NavBarDrawer = () => {
         onClick={open}
         display={{
           base: 'block',
-          md: 'none',
+          sm: 'none',
         }}
         color="gray"
         variant="subtle"
