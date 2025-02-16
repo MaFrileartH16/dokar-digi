@@ -1,6 +1,5 @@
 import { PasswordInput, TextInput } from '@/Components/Index.jsx';
 import BaseLayout from '@/Layouts/BaseLayout.jsx';
-import { router } from '@inertiajs/core';
 import { useForm } from '@inertiajs/react';
 import {
   ActionIcon,
@@ -118,17 +117,14 @@ const Login = (props) => {
             <Divider my={32} label="Atau" labelPosition="center" />
 
             <Button
+              component="a"
               fullWidth
               leftSection={<IconBrandGoogle />}
               color="gray"
               variant="outline"
-              onClick={() =>
-                router.get(
-                  route('social-account.redirect', {
-                    provider: 'google',
-                  }),
-                )
-              }
+              href={route('social-account.redirect', {
+                provider: 'google',
+              })}
             >
               Masuk Google
             </Button>
