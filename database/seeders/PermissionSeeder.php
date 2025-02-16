@@ -7,12 +7,8 @@ use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
 {
-  /**
-   * Run the database seeds.
-   */
   public function run(): void
   {
-    // Menambahkan Permission CRUD untuk user
     $permissions = [
       'create user',
       'read user',

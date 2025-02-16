@@ -1,0 +1,30 @@
+// import { NavigationDrawer } from '@/Components/NavigationDrawer.jsx';
+// import { UserMenu } from '@/Components/UserMenu';
+import { ActionIcon, Box, Divider, Flex } from '@mantine/core';
+import { IconBug } from '@tabler/icons-react';
+
+const Header = (props) => {
+  return (
+    <Box
+      pos="sticky"
+      top={0}
+      style={{
+        zIndex: 3,
+      }}
+    >
+      <Flex justify={props.user ? 'space-between' : 'center'} p={16}>
+        {/*{props.user && <NavigationDrawer />}*/}
+
+        <ActionIcon size={48} variant="transparent">
+          <IconBug size={48} />
+        </ActionIcon>
+
+        {/*{props.user && <UserMenu user={props.user} />}*/}
+      </Flex>
+
+      <Divider />
+    </Box>
+  );
+};
+
+export default Header;

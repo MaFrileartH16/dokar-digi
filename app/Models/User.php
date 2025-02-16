@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Filament\Models\Contracts\FilamentUser;
-use Filament\Panel;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable
 {
   use HasFactory, Notifiable, SoftDeletes, HasRoles, HasUlids;
 
@@ -26,11 +24,6 @@ class User extends Authenticatable implements FilamentUser
     'password',
     'remember_token',
   ];
-
-  public function canAccessPanel(Panel $panel): bool
-  {
-    return true;
-  }
 
   public function setEmailAttribute($value): void
   {
