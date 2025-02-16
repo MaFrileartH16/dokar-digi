@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\SocialAccount;
 use Exception;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialAccountController extends Controller
 {
-  public function redirect($provider): \Symfony\Component\HttpFoundation\RedirectResponse|RedirectResponse
+  public function redirect($provider)
   {
-    return Socialite::driver($provider)->redirect();
+    return Socialite::driver($provider)
+      ->redirectUrl(route('social-account.callback', ['provider' => $provider]))
+      ->redirect();
   }
+
 
   public function callback($provider)
   {

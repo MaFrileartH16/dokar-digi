@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/auth/{provider}/redirect', [SocialAccountController::class, 'redirect'])->name('social-account.redirect');
 
 // Route untuk callback dari provider (Google, GitHub, dll)
-Route::get('/auth/{provider}/callback', [SocialAccountController::class, 'callback']);
+Route::get('/auth/{provider}/callback', [SocialAccountController::class, 'callback'])->name('social-account.callback');
 
 // Rute untuk menautkan akun sosial media
 Route::post('/account/link/{provider}', [SocialAccountController::class, 'link'])->name('social-account.link');
