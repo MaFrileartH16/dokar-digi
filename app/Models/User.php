@@ -16,7 +16,8 @@ class User extends Authenticatable
   use HasFactory, Notifiable, SoftDeletes, HasRoles, HasUlids;
 
   protected $fillable = [
-    'name',
+    'full_name',
+    'username',
     'email',
     'password',
   ];
@@ -31,9 +32,14 @@ class User extends Authenticatable
     $this->attributes['email'] = strtolower($value);
   }
 
-  public function setNameAttribute($value): void
+  public function setUsernameAttribute($value): void
   {
-    $this->attributes['name'] = ucwords(strtolower($value));
+    $this->attributes['username'] = strtolower($value);
+  }
+
+  public function setFullNameAttribute($value): void
+  {
+    $this->attributes['full_name'] = ucwords(strtolower($value));
   }
 
   public function setPasswordAttribute($value): void
@@ -46,10 +52,12 @@ class User extends Authenticatable
     return $this->hasMany(SocialAccount::class);
   }
 
+
   protected function casts(): array
   {
     return [
       'password' => 'hashed',
     ];
   }
+
 }

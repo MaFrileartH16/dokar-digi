@@ -10,7 +10,7 @@ class UserSeeder extends Seeder
 {
   public function run(): void
   {
-    $admin = User::create(['name' => 'Admin', 'email' => 'admin@dokar-digi.id', 'password' => 'admin@dokar-digi.id']);
+    $admin = User::create(['full_name' => 'Admin', 'username' => 'admin', 'email' => 'admin@dokar-digi.id', 'password' => 'admin']);
     $admin->assignRole('Admin');
 
     User::factory(16)->create()->each(function ($user) {

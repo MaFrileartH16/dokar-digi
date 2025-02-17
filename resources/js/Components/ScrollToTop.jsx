@@ -21,7 +21,7 @@ const ScrollToTop = () => {
             transitionProps={{ transition: 'fade', duration: 200 }}
           >
             <ActionIcon
-              shadow="sm"
+              color="gray"
               onClick={() => scrollTo({ y: 0 })}
               style={transitionStyles}
             >

@@ -1,12 +1,16 @@
 import { ScrollToTop } from '@/Components/Index.jsx';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import { Stack } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { useEffect } from 'react';
 
 const BaseLayout = (props) => {
+  const {
+    props: { notification },
+  } = usePage();
+
   useEffect(() => {
-    if (props.notification) {
+    if (notification) {
       notifications.show({
         // icon: (
         //   <ThemeIcon
@@ -21,15 +25,15 @@ const BaseLayout = (props) => {
         //   </ThemeIcon>
         // ),
         withBorder: true,
-        title: props.notification.title,
-        message: props.notification.message,
-        color: props.notification.status === 'success' ? 'green' : 'red',
+        title: notification.title,
+        message: notification.message,
+        color: notification.status === 'success' ? 'green' : 'red',
         autoClose: 2000,
       });
     }
 
     notifications.cleanQueue();
-  }, [props.notification]);
+  }, [notification]);
 
   return (
     <>

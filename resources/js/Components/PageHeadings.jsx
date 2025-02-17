@@ -4,7 +4,6 @@ import { IconChevronRight } from '@tabler/icons-react';
 
 const PageHeadings = ({ title, breadcrumbs = [], description }) => (
   <>
-    {/* Breadcrumbs is optional and will only render if breadcrumbs is provided */}
     {breadcrumbs.length > 0 && (
       <Breadcrumbs
         styles={{
@@ -31,12 +30,15 @@ const PageHeadings = ({ title, breadcrumbs = [], description }) => (
       </Breadcrumbs>
     )}
 
-    <Title fw={600} order={2}>
+    <Title fw={600} order={2} mb={description ? 0 : 32}>
       {title}
     </Title>
 
-    {/* Description is optional and will render only if description is provided */}
-    {description && <Text c="gray">{description}</Text>}
+    {description && (
+      <Text c="gray" mb={description ? 32 : 0}>
+        {description}
+      </Text>
+    )}
   </>
 );
 

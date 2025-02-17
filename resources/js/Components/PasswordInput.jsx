@@ -1,13 +1,13 @@
-import {
-  Box,
-  PasswordInput as PasswordInputMantine,
-  Text,
-} from '@mantine/core';
+import { PasswordInput as PasswordInputMantine, Text } from '@mantine/core';
 
 const PasswordInput = ({ label, description, error, ...props }) => {
   return (
-    <Box>
-      <Text fw={500}>{label}</Text>
+    <>
+      {label && (
+        <Text mb={description ? 0 : 8} fw={500}>
+          {label}
+        </Text>
+      )}
 
       {description && (
         <Text c="gray" mb={8}>
@@ -16,7 +16,6 @@ const PasswordInput = ({ label, description, error, ...props }) => {
       )}
 
       <PasswordInputMantine
-        mt={description ? 0 : 8}
         {...props}
         styles={{
           input: {
@@ -30,7 +29,7 @@ const PasswordInput = ({ label, description, error, ...props }) => {
           {error}
         </Text>
       )}
-    </Box>
+    </>
   );
 };
 

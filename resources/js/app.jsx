@@ -8,6 +8,7 @@ import '@mantine/dropzone/styles.css';
 import { Notifications } from '@mantine/notifications';
 import '@mantine/notifications/styles.css';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import 'mantine-react-table/styles.css';
 import { createRoot } from 'react-dom/client';
 import '../css/app.css';
 import './bootstrap';

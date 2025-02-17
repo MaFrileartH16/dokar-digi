@@ -69,15 +69,12 @@ const theme = createTheme({
     }),
     TextInput: TextInput.extend({
       styles: {
-        section: { width: 24, margin: '0 16px' },
+        // section: { width: 24, margin: '0 16px' },
         wrapper: { marginBottom: 0 },
-        // label: { marginBottom: 8 },
         input: {
-          padding: '0 16px 0px 56px',
+          // padding: '0 16px 0px 56px',
           height: 48,
-          // marginTop: 16,
         },
-        // error: { marginTop: 8 },
       },
     }),
     PasswordInput: PasswordInput.extend({
@@ -123,9 +120,9 @@ const theme = createTheme({
         root: {
           margin: 0,
         },
-        section: { width: 24, margin: '0 16px' },
+        // section: { width: 24, margin: '0 16px' },
         input: {
-          padding: '0 16px 0px 56px',
+          // padding: '0 16px 0px 56px',
           height: 48,
         },
         option: {

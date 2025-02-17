@@ -21,23 +21,25 @@ import {
 
 const Login = (props) => {
   console.log(props);
-
   const form = useForm({
-    email: '',
+    identity: '',
     password: '',
   });
 
-  const validateEmail = (email) => {
-    const trimmedEmail = email.trim();
+  const validateIdentity = (identity) => {
+    const trimmedIdentity = identity.trim();
     switch (true) {
-      case !trimmedEmail:
-        form.setError('email', 'Alamat surel harus diisi');
+      case !trimmedIdentity:
+        form.setError(
+          'identity',
+          'Alamat surel atau nama pengguna harus diisi',
+        );
         break;
-      case !/\S+@\S+\.\S+/.test(trimmedEmail):
-        form.setError('email', 'Alamat surel tidak sah');
+      case !/\S+@\S+\.\S+/.test(trimmedIdentity) && trimmedIdentity.length < 3:
+        form.setError('identity', 'Nama pengguna atau alamat surel tidak sah');
         break;
       default:
-        form.setError('email', '');
+        form.setError('identity', '');
     }
   };
 
@@ -59,7 +61,7 @@ const Login = (props) => {
         form.post(route('login'));
       }}
     >
-      <BaseLayout title="Masuk Akun" notification={props.notification}>
+      <BaseLayout title="Masuk Akun">
         <Center flex={1} p={16}>
           <Paper bg="gray.0" shadow="none" withBorder p={32} w={480}>
             <Center>
@@ -75,15 +77,15 @@ const Login = (props) => {
             <Stack gap={16} my={16}>
               <TextInput
                 autoFocus
-                value={form.data.email}
-                label="Alamat Surel"
-                placeholder="Masukkan alamat surel"
+                value={form.data.identity}
+                label="Alamat Surel / Nama Pengguna"
+                placeholder="Masukkan alamat surel atau nama pengguna"
                 leftSection={<IconMail />}
                 onChange={(e) => {
-                  form.setData('email', e.target.value);
-                  validateEmail(e.target.value);
+                  form.setData('identity', e.target.value);
+                  validateIdentity(e.target.value);
                 }}
-                error={form.errors.email}
+                error={form.errors.identity}
               />
 
               <PasswordInput
@@ -102,14 +104,16 @@ const Login = (props) => {
             <Button
               type="submit"
               leftSection={
-                !form.data.password.trim() || !form.data.email.trim() ? (
+                !form.data.password.trim() || !form.data.identity.trim() ? (
                   <IconLock />
                 ) : (
                   <IconLockOpen2 />
                 )
               }
               loading={form.processing}
-              disabled={!form.data.password.trim() || !form.data.email.trim()}
+              disabled={
+                !form.data.password.trim() || !form.data.identity.trim()
+              }
               fullWidth
             >
               Masuk

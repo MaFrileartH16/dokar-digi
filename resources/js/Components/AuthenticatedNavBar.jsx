@@ -4,7 +4,7 @@ import {
   Box,
   Button,
   Divider,
-  Group,
+  Flex,
   Stack,
   Title,
 } from '@mantine/core';
@@ -76,61 +76,61 @@ const AuthenticatedNavBar = () => {
         sm: 'flex',
       }}
     >
-      <Group gap={0} justify="space-between" p={16}>
+      <Flex justify="space-between" p={16}>
         {!collapsed && (
-          <Group gap={0}>
+          <Flex
+            align="center"
+            style={{
+              opacity: collapsed ? 0 : 1, // fade out when collapsed
+              transform: collapsed ? 'translateX(-100%)' : 'translateX(0)', // slide out when collapsed
+            }}
+          >
             <ActionIcon variant="transparent">
               <IconArchive size={32} />
             </ActionIcon>
-            <Title order={3}>Dokar Digi</Title>
-          </Group>
+
+            <Title
+              order={3}
+              style={{
+                // Ensure the title text has no space breaking issues
+                whiteSpace: 'nowrap', // Corrected from "whitespace"
+              }}
+            >
+              Dokar Digi
+            </Title>
+          </Flex>
         )}
 
         <ActionIcon onClick={toggleCollapse} variant="subtle" color="gray">
           {collapsed ? <IconChevronRight /> : <IconChevronLeft />}
         </ActionIcon>
-      </Group>
+      </Flex>
 
       <Divider />
 
       <Box flex={1} p={16}>
-        {!collapsed ? (
-          navItems.map(({ label, route, leftSection, ...props }) => {
-            const isActive = url.includes(route);
+        {navItems.map(({ label, route, leftSection, ...props }) => {
+          const isActive = url.includes(route);
 
-            return (
-              <Button
-                key={label}
-                color={isActive ? 'blue' : 'gray'}
-                display="flex"
-                fullWidth
-                variant="subtle"
-                leftSection={leftSection(isActive)}
-                {...props}
-              >
-                {label}
-              </Button>
-            );
-          })
-        ) : (
-          <Box>
-            {navItems.map(({ leftSection, label, route, ...props }) => {
-              const isActive = url.includes(route);
-
-              return (
-                <ActionIcon
-                  key={label}
-                  fullWidth
-                  variant="subtle"
-                  color={isActive ? 'blue' : 'gray'}
-                  {...props}
-                >
-                  {leftSection(isActive)}
-                </ActionIcon>
-              );
-            })}
-          </Box>
-        )}
+          return (
+            <Button
+              styles={{
+                root: {
+                  padding: collapsed ? '0 11px' : '0 16px',
+                },
+              }}
+              key={label}
+              color={isActive ? 'blue' : 'gray'}
+              display="flex"
+              fullWidth
+              variant="subtle"
+              leftSection={leftSection(isActive)}
+              {...props}
+            >
+              {label}
+            </Button>
+          );
+        })}
       </Box>
     </Stack>
   );

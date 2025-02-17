@@ -9,24 +9,33 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $users = User::all();
+    $perPage = $request->input('per_page', 5); // Default 5 jika tidak ada input
+
     return Inertia::render('Users/Index', [
-      'users' => $users,
+      'users' => User::with('roles')
+        ->whereDoesntHave('roles', fn($query) => $query->where('name', 'Admin'))
+        ->paginate($perPage)
+        ->through(fn($user) => $user->only(['id', 'full_name', 'email']) + [
+            'roles' => $user->roles->pluck('name')
+          ]),
+      'filters' => [
+        'per_page' => $perPage, // Simpan nilai agar tidak hilang saat reload
+      ],
       'notification' => session()->pull('notification'),
     ]);
   }
 
+
   public function store(Request $request)
   {
     User::create([
-      'name' => $request->name,
-      'email' => $request->email,
+      ...$request->only(['name', 'email']),
       'password' => Hash::make($request->password),
     ]);
 
-    return redirect()->route('users.index')->with('notification', [
+    return to_route('users.index')->with('notification', [
       'status' => 'success',
       'title' => 'User Created',
       'message' => 'User has been successfully created.',
@@ -38,38 +47,33 @@ class UserController extends Controller
     return Inertia::render('Users/Create');
   }
 
-  public function edit($id)
+  public function edit(User $user)
   {
-    $user = User::findOrFail($id);
     return Inertia::render('Users/Edit', [
-      'user' => $user,
+      'user' => $user->only(['id', 'full_name', 'email']),
       'notification' => session()->pull('notification'),
     ]);
   }
 
-  public function update(Request $request, $id)
+  public function update(Request $request, User $user)
   {
-    $user = User::findOrFail($id);
-    $user->name = $request->name;
-    $user->email = $request->email;
-    if ($request->password) {
-      $user->password = Hash::make($request->password);
-    }
-    $user->save();
+    $user->update([
+      ...$request->only(['name', 'email']),
+      'password' => $request->filled('password') ? Hash::make($request->password) : $user->password,
+    ]);
 
-    return redirect()->route('users.index')->with('notification', [
+    return to_route('users.index')->with('notification', [
       'status' => 'success',
       'title' => 'User Updated',
       'message' => 'User information has been successfully updated.',
     ]);
   }
 
-  public function destroy($id)
+  public function destroy(User $user)
   {
-    $user = User::findOrFail($id);
     $user->delete();
 
-    return redirect()->route('users.index')->with('notification', [
+    return to_route('users.index')->with('notification', [
       'status' => 'success',
       'title' => 'User Deleted',
       'message' => 'User has been successfully deleted.',

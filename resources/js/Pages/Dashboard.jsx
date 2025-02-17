@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 
 const Dashboard = (props) => {
   return (
-    <AuthenticatedLayout title="Dasbor" notification={props.notification}>
+    <AuthenticatedLayout title="Dasbor">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci commodi
       consequatur corporis cumque dignissimos eligendi eum eveniet harum magni
       maiores molestiae omnis optio perspiciatis porro quae quos similique sit

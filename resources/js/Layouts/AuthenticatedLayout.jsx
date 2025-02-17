@@ -11,7 +11,7 @@ const AuthenticatedLayout = (props) => {
   const { breadcrumbs = [], description } = pageHeadings; // Safe destructuring
 
   return (
-    <BaseLayout title={props.title} notification={props.notification}>
+    <BaseLayout title={props.title}>
       <Flex flex={1}>
         <AuthenticatedNavBar />
 

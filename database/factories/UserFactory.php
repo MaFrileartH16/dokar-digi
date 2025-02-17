@@ -10,13 +10,15 @@ class UserFactory extends Factory
 
   public function definition(): array
   {
-    $name = fake()->firstName() . ' ' . fake()->lastName();
-    $email = strtolower(str_replace(' ', '.', $name)) . '@dokar-digi.id';
+    $full_name = fake()->firstName() . ' ' . fake()->lastName();
+    $username = strtolower(str_replace(' ', '.', $full_name));
+    $email = strtolower(str_replace(' ', '.', $full_name)) . '@dokar-digi.id';
 
     return [
-      'name' => $name,
+      'full_name' => $full_name,
+      'username' => $username,
       'email' => $email,
-      'password' => $email,
+      'password' => $username,
     ];
   }
 }

@@ -1,10 +1,10 @@
-import { Text, TextInput as TextInputMantine } from '@mantine/core';
+import { Select as SelectMantine, Text } from '@mantine/core';
 
-const TextInput = ({ label, description, error, ...props }) => {
+const Select = ({ label, description, error, ...props }) => {
   return (
     <>
       {label && (
-        <Text mb={description ? 0 : 8} fw={500}>
+        <Text fw={500} mb={description ? 0 : 8}>
           {label}
         </Text>
       )}
@@ -15,15 +15,13 @@ const TextInput = ({ label, description, error, ...props }) => {
         </Text>
       )}
 
-      <TextInputMantine
+      <SelectMantine
         {...props}
         styles={{
           input: {
-            borderColor: error ? 'red' : undefined,
             padding:
-              props.leftSection || props.rightSection
-                ? '0 16px 0px 56px'
-                : '0 16px',
+              props.leftSection || (props.rightSection && '0 16px 0px 56px'),
+            borderColor: error ? 'red' : undefined,
           },
           section: (props.leftSection || props.rightSection) && {
             width: 24,
@@ -41,4 +39,4 @@ const TextInput = ({ label, description, error, ...props }) => {
   );
 };
 
-export default TextInput;
+export default Select;

@@ -23,23 +23,24 @@ class AuthenticatedSessionController extends Controller
   public function store(LoginRequest $request): RedirectResponse
   {
     try {
-      Auth::attempt($request->only('email', 'password'));
+      $request->authenticate();
       $request->session()->regenerate();
 
       return redirect()->intended(route('dashboard', absolute: false))
         ->with('notification', [
           'status' => 'success',
           'title' => 'Berhasil Masuk Akun',
-          'message' => 'Selamat datang kembali, ' . Auth::user()->name . '!',
+          'message' => 'Selamat datang kembali, ' . Auth::user()->full_name . '!',
         ]);
     } catch (Exception $e) {
       return back()->with('notification', [
         'status' => 'error',
         'title' => 'Gagal Masuk Akun',
-        'message' => 'Alamat surel atau kata sandi salah. Silakan coba lagi.',
+        'message' => 'Kredensial salah. Silakan coba lagi.',
       ]);
     }
   }
+
 
   public function destroy(Request $request): RedirectResponse
   {
@@ -52,7 +53,7 @@ class AuthenticatedSessionController extends Controller
       return redirect('/')->with('notification', [
         'status' => 'success',
         'title' => 'Berhasil KeluarAkun',
-        'message' => 'Sampai jumpa lagi, ' . Auth::user()->name . '!',
+        'message' => 'Sampai jumpa lagi, ' . Auth::user()->full_name . '!',
       ]);
     } catch (Exception $e) {
       return redirect('/')->with('notification', [

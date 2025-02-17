@@ -1,1 +1,0 @@
-import{j as o}from"./app-BEDDHK4x.js";import{A as i}from"./AuthenticatedLayout-DhVVzMDY.js";import"./BaseLayout-DCiFf6_0.js";const e=t=>o.jsx(i,{title:"Daftar Pengguna",notification:t.notification});export{e as default};
