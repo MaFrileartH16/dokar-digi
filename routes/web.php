@@ -26,13 +26,13 @@ Route::middleware('auth')->group(function () {
 
 
 // Redirect to OAuth provider for login or link
-Route::get('oauth/{provider}/redirect', [SocialAccountController::class, 'redirect'])->name('oauth.redirect');
+Route::get('auth/{provider}/redirect', [SocialAccountController::class, 'redirect'])->name('oauth.redirect');
 
 // Callback from OAuth provider after user authenticates
-Route::get('oauth/{provider}/callback', [SocialAccountController::class, 'callback'])->name('oauth.callback');
+Route::get('auth/{provider}/callback', [SocialAccountController::class, 'callback'])->name('oauth.callback');
 
 // Unlink a social account
-Route::get('oauth/{provider}/unlink', [SocialAccountController::class, 'unlink'])->name('oauth.unlink');
+Route::get('auth/{provider}/unlink', [SocialAccountController::class, 'unlink'])->name('oauth.unlink');
 
 
 Route::get('settings', function () {
