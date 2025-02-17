@@ -13,9 +13,9 @@ import {
 import {
   IconArchive,
   IconBrandGoogle,
+  IconIdBadge2,
   IconLock,
   IconLockOpen2,
-  IconMail,
   IconPassword,
 } from '@tabler/icons-react';
 
@@ -80,7 +80,7 @@ const Login = (props) => {
                 value={form.data.identity}
                 label="Alamat Surel / Nama Pengguna"
                 placeholder="Masukkan alamat surel atau nama pengguna"
-                leftSection={<IconMail />}
+                leftSection={<IconIdBadge2 />}
                 onChange={(e) => {
                   form.setData('identity', e.target.value);
                   validateIdentity(e.target.value);
