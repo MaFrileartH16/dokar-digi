@@ -1,8 +1,8 @@
-import { Select as SelectMantine, Text } from '@mantine/core';
+import { Box, Select as SelectMantine, Text } from '@mantine/core';
 
 const Select = ({ label, description, error, ...props }) => {
   return (
-    <>
+    <Box>
       {label && (
         <Text fw={500} mb={description ? 0 : 8}>
           {label}
@@ -35,7 +35,7 @@ const Select = ({ label, description, error, ...props }) => {
           {error}
         </Text>
       )}
-    </>
+    </Box>
   );
 };
 

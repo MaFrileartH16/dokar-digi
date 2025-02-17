@@ -10,12 +10,9 @@ use Inertia\Inertia;
 Route::redirect('/', '/login');
 Route::get('/dashboard', function () {
   $user = Auth::user();
-
-  // Ambil akun sosial media yang terhubung dengan pengguna
-  $socialAccounts = $user->socialAccounts;
   return Inertia::render('Dashboard', [
     'notification' => session()->pull('notification'),
-    'socialAccounts' => $socialAccounts,
+    'socialAccounts' => $user->socialAccounts,
   ]);
 })->middleware(['auth'])->name('dashboard');
 
@@ -23,20 +20,28 @@ Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+  Route::resource('users', UserController::class);
 });
 
-// Route untuk redirect ke provider (Google, GitHub, dll)
-Route::get('/auth/{provider}/redirect', [SocialAccountController::class, 'redirect'])->name('social-account.redirect');
 
-// Route untuk callback dari provider (Google, GitHub, dll)
-Route::get('/auth/{provider}/callback', [SocialAccountController::class, 'callback'])->name('social-account.callback');
+// OAuth login and callback
+Route::get('auth/{provider}/redirect', [SocialAccountController::class, 'loginRedirect'])->name('social.login.redirect');
+Route::get('auth/{provider}/callback', [SocialAccountController::class, 'loginCallback'])->name('social.login.callback');
 
-// Rute untuk menautkan akun sosial media
-Route::post('/account/link/{provider}', [SocialAccountController::class, 'link'])->name('social-account.link');
+// Link a new social account
+Route::get('auth/{provider}/link', [SocialAccountController::class, 'linkRedirect'])->name('social.link.redirect');
+Route::get('auth/{provider}/link/callback', [SocialAccountController::class, 'linkCallback'])->name('social.link.callback');
 
-// Rute untuk melepaskan (unlink) akun sosial media
-Route::post('/account/unlink/{provider}', [SocialAccountController::class, 'unlink'])->name('social-account.unlink');
+// Unlink a social account
+Route::get('auth/{provider}/unlink', [SocialAccountController::class, 'unlink'])->name('social.unlink');
 
-Route::resource('users', UserController::class)->middleware(['auth']);
+
+Route::get('settings', function () {
+  return Inertia::render('Settings', [
+    'notification' => session()->pull('notification'),
+    'social_accounts' => Auth::user()->socialAccounts,
+  ]);
+})->middleware(['auth'])->name('settings');
 
 require __DIR__ . '/auth.php';

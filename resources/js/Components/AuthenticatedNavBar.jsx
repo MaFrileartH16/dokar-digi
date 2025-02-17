@@ -23,38 +23,49 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 
-const navItems = [
-  {
-    label: 'Dasbor',
-    leftSection: (isActive) =>
-      isActive ? <IconDashboardFilled /> : <IconDashboard />,
-    route: 'dashboard',
-    onClick: () => router.get(route('dashboard')),
-  },
-  {
-    label: 'Pengguna',
-    leftSection: (isActive) => (isActive ? <IconUserFilled /> : <IconUser />),
-    route: 'users',
-    onClick: () => router.get(route('users.index')),
-  },
-  {
-    label: 'Peran',
-    leftSection: (isActive) =>
-      isActive ? <IconShieldLockFilled /> : <IconShieldLock />,
-    route: 'roles',
-    onClick: () => router.get(route('roles.index')),
-  },
-  {
-    label: 'Dokumen',
-    leftSection: (isActive) => (isActive ? <IconFileFilled /> : <IconFile />),
-    route: 'documents',
-    onClick: () => router.get(route('documents.index')),
-  },
-];
-
+// Ambil user dari Inertia
 const AuthenticatedNavBar = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const { url } = usePage();
+  const { url, props } = usePage();
+  const user = props.auth.user; // Ambil user dari props
+
+  // Cek apakah user adalah Admin
+  const isAdmin = user?.roles[0] === 'Admin';
+
+  // Daftar menu navigasi
+  const navItems = [
+    {
+      label: 'Dasbor',
+      leftSection: (isActive) =>
+        isActive ? <IconDashboardFilled /> : <IconDashboard />,
+      route: 'dashboard',
+      onClick: () => router.get(route('dashboard')),
+    },
+    ...(isAdmin
+      ? [
+          {
+            label: 'Pengguna',
+            leftSection: (isActive) =>
+              isActive ? <IconUserFilled /> : <IconUser />,
+            route: 'users',
+            onClick: () => router.get(route('users.index')),
+          },
+          {
+            label: 'Peran',
+            leftSection: (isActive) =>
+              isActive ? <IconShieldLockFilled /> : <IconShieldLock />,
+            route: 'roles',
+            onClick: () => router.get(route('roles.index')),
+          },
+        ]
+      : []),
+    {
+      label: 'Dokumen',
+      leftSection: (isActive) => (isActive ? <IconFileFilled /> : <IconFile />),
+      route: 'documents',
+      onClick: () => router.get(route('documents.index')),
+    },
+  ];
 
   const toggleCollapse = () => {
     setCollapsed((prev) => !prev);
@@ -65,37 +76,19 @@ const AuthenticatedNavBar = () => {
       pos="sticky"
       top={0}
       h="100vh"
-      style={{
-        zIndex: 3,
-      }}
+      style={{ zIndex: 3 }}
       gap={0}
       w={collapsed ? 80 : 400}
       bg="gray.0"
-      display={{
-        base: 'none',
-        sm: 'flex',
-      }}
+      display={{ base: 'none', sm: 'flex' }}
     >
       <Flex justify="space-between" p={16}>
         {!collapsed && (
-          <Flex
-            align="center"
-            style={{
-              opacity: collapsed ? 0 : 1, // fade out when collapsed
-              transform: collapsed ? 'translateX(-100%)' : 'translateX(0)', // slide out when collapsed
-            }}
-          >
+          <Flex align="center">
             <ActionIcon variant="transparent">
               <IconArchive size={32} />
             </ActionIcon>
-
-            <Title
-              order={3}
-              style={{
-                // Ensure the title text has no space breaking issues
-                whiteSpace: 'nowrap', // Corrected from "whitespace"
-              }}
-            >
+            <Title order={3} style={{ whiteSpace: 'nowrap' }}>
               Dokar Digi
             </Title>
           </Flex>
@@ -114,11 +107,6 @@ const AuthenticatedNavBar = () => {
 
           return (
             <Button
-              styles={{
-                root: {
-                  padding: collapsed ? '0 11px' : '0 16px',
-                },
-              }}
               key={label}
               color={isActive ? 'blue' : 'gray'}
               display="flex"
@@ -126,6 +114,11 @@ const AuthenticatedNavBar = () => {
               variant="subtle"
               leftSection={leftSection(isActive)}
               {...props}
+              styles={{
+                root: {
+                  padding: collapsed ? '0 11px' : '0 16px',
+                },
+              }}
             >
               {label}
             </Button>

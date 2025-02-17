@@ -1,4 +1,4 @@
-import { router } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react'; // Gunakan usePage untuk mendapatkan data user
 import {
   ActionIcon,
   Box,
@@ -23,37 +23,42 @@ import {
   IconX,
 } from '@tabler/icons-react';
 
-const navItems = [
-  {
-    label: 'Dasbor',
-    leftSection: (isActive) =>
-      isActive ? <IconDashboardFilled /> : <IconDashboard />,
-    route: 'dashboard',
-    onClick: () => router.get(route('dashboard')),
-  },
-  {
-    label: 'Pengguna',
-    leftSection: (isActive) => (isActive ? <IconUserFilled /> : <IconUser />),
-    route: 'users',
-    onClick: () => router.get(route('users.index')),
-  },
-  {
-    label: 'Peran',
-    leftSection: (isActive) =>
-      isActive ? <IconShieldLockFilled /> : <IconShieldLock />,
-    route: 'roles',
-    onClick: () => router.get(route('roles.index')),
-  },
-  {
-    label: 'Dokumen',
-    leftSection: (isActive) => (isActive ? <IconFileFilled /> : <IconFile />),
-    route: 'documents',
-    onClick: () => router.get(route('documents.index')),
-  },
-];
-
 const NavBarDrawer = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const { auth } = usePage().props; // Ambil data user dari props
+
+  // Cek apakah user memiliki role Admin
+  const isAdmin = auth?.user?.roles?.includes('Admin');
+
+  // Definisi menu navigasi dengan filter peran
+  const navItems = [
+    {
+      label: 'Dasbor',
+      leftSection: (isActive) =>
+        isActive ? <IconDashboardFilled /> : <IconDashboard />,
+      route: 'dashboard',
+      onClick: () => router.get(route('dashboard')),
+    },
+    isAdmin && {
+      label: 'Pengguna',
+      leftSection: (isActive) => (isActive ? <IconUserFilled /> : <IconUser />),
+      route: 'users',
+      onClick: () => router.get(route('users.index')),
+    },
+    isAdmin && {
+      label: 'Peran',
+      leftSection: (isActive) =>
+        isActive ? <IconShieldLockFilled /> : <IconShieldLock />,
+      route: 'roles',
+      onClick: () => router.get(route('roles.index')),
+    },
+    {
+      label: 'Dokumen',
+      leftSection: (isActive) => (isActive ? <IconFileFilled /> : <IconFile />),
+      route: 'documents',
+      onClick: () => router.get(route('documents.index')),
+    },
+  ].filter(Boolean); // Hapus item `null` dari array
 
   return (
     <>

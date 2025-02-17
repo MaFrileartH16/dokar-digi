@@ -79,14 +79,12 @@ const theme = createTheme({
     }),
     PasswordInput: PasswordInput.extend({
       styles: {
-        section: { width: 24, margin: '0 16px' },
+        // section: { width: 24, margin: '0 16px' },
         wrapper: { marginBottom: 0 },
-        // label: { marginBottom: 8 },
-        innerInput: {
-          padding: '0 56px',
-        },
+        // innerInput: {
+        // padding: '0 56px',
+        // },
         input: { height: 48 },
-        // error: { marginTop: 8 },
       },
     }),
     Textarea: TextInput.extend({

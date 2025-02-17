@@ -1,11 +1,14 @@
 import { router } from '@inertiajs/core';
 import { Avatar, Menu } from '@mantine/core';
-import { IconLogout, IconSettings, IconUser } from '@tabler/icons-react';
+import { IconLogout, IconSettings } from '@tabler/icons-react';
 
 const UserMenu = () => {
   const menuItems = [
-    { label: 'Profil', leftSection: <IconUser /> },
-    { label: 'Pengaturan', leftSection: <IconSettings /> },
+    {
+      label: 'Pengaturan',
+      leftSection: <IconSettings />,
+      onClick: () => router.get(route('settings')),
+    },
     {
       label: 'Keluar',
       leftSection: <IconLogout />,

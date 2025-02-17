@@ -1,8 +1,8 @@
-import { Text, TextInput as TextInputMantine } from '@mantine/core';
+import { Box, Text, TextInput as TextInputMantine } from '@mantine/core';
 
 const TextInput = ({ label, description, error, ...props }) => {
   return (
-    <>
+    <Box>
       {label && (
         <Text mb={description ? 0 : 8} fw={500}>
           {label}
@@ -37,7 +37,7 @@ const TextInput = ({ label, description, error, ...props }) => {
           {error}
         </Text>
       )}
-    </>
+    </Box>
   );
 };
 
