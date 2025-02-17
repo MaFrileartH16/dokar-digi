@@ -1,4 +1,4 @@
-import{c as o}from"./BaseLayout-BzUIBd55.js";/**
+import{c as o}from"./BaseLayout-CtS7ZKXn.js";/**
  * @license @tabler/icons-react v3.30.0 - MIT
  *
  * This source code is licensed under the MIT license.

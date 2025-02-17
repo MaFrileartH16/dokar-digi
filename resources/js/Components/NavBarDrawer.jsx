@@ -1,25 +1,14 @@
+import { Button } from '@/Components/Index.jsx';
 import { router, usePage } from '@inertiajs/react'; // Gunakan usePage untuk mendapatkan data user
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Divider,
-  Drawer,
-  Group,
-  Title,
-} from '@mantine/core';
+import { ActionIcon, Box, Divider, Drawer, Group, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
   IconArchive,
   IconDashboard,
-  IconDashboardFilled,
   IconFile,
-  IconFileFilled,
   IconMenu4,
   IconShieldLock,
-  IconShieldLockFilled,
   IconUser,
-  IconUserFilled,
   IconX,
 } from '@tabler/icons-react';
 
@@ -30,35 +19,36 @@ const NavBarDrawer = () => {
   // Cek apakah user memiliki role Admin
   const isAdmin = auth?.user?.roles?.includes('Admin');
 
-  // Definisi menu navigasi dengan filter peran
   const navItems = [
     {
       label: 'Dasbor',
-      leftSection: (isActive) =>
-        isActive ? <IconDashboardFilled /> : <IconDashboard />,
+      leftSection: <IconDashboard />,
       route: 'dashboard',
       onClick: () => router.get(route('dashboard')),
     },
-    isAdmin && {
-      label: 'Pengguna',
-      leftSection: (isActive) => (isActive ? <IconUserFilled /> : <IconUser />),
-      route: 'users',
-      onClick: () => router.get(route('users.index')),
-    },
-    isAdmin && {
-      label: 'Peran',
-      leftSection: (isActive) =>
-        isActive ? <IconShieldLockFilled /> : <IconShieldLock />,
-      route: 'roles',
-      onClick: () => router.get(route('roles.index')),
-    },
+    ...(isAdmin
+      ? [
+          {
+            label: 'Pengguna',
+            leftSection: <IconUser />,
+            route: 'users',
+            onClick: () => router.get(route('users.index')),
+          },
+          {
+            label: 'Peran',
+            leftSection: <IconShieldLock />,
+            route: 'roles',
+            onClick: () => router.get(route('roles.index')),
+          },
+        ]
+      : []),
     {
       label: 'Dokumen',
-      leftSection: (isActive) => (isActive ? <IconFileFilled /> : <IconFile />),
+      leftSection: <IconFile />,
       route: 'documents',
       onClick: () => router.get(route('documents.index')),
     },
-  ].filter(Boolean); // Hapus item `null` dari array
+  ];
 
   return (
     <>
@@ -91,7 +81,7 @@ const NavBarDrawer = () => {
         <Divider />
 
         <Box flex={1} p={16}>
-          {navItems.map(({ label, route, leftSection, onClick }) => {
+          {navItems.map(({ label, route, onClick, ...props }) => {
             const isActive = window.location.pathname.includes(route);
 
             return (
@@ -101,8 +91,8 @@ const NavBarDrawer = () => {
                 display="flex"
                 fullWidth
                 variant="subtle"
-                leftSection={leftSection(isActive)}
                 onClick={onClick}
+                {...props}
               >
                 {label}
               </Button>

@@ -1,4 +1,4 @@
-import{c as h,a as s}from"./BaseLayout-BzUIBd55.js";import{j as e,B as i,d as c,T as g}from"./app-mJobidlQ.js";/**
+import{c as h,a as s}from"./BaseLayout-CtS7ZKXn.js";import{j as e,B as i,d as c,T as g}from"./app-CI8HYE36.js";/**
  * @license @tabler/icons-react v3.30.0 - MIT
  *
  * This source code is licensed under the MIT license.
