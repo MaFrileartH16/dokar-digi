@@ -124,6 +124,7 @@ const Index = () => {
               onChange={handlePerPageChange}
               allowDeselect={false}
               data={['5', '10', '20', '50']}
+              defaultValue="10"
             />
 
             <Text align="center">
@@ -153,6 +154,7 @@ const Index = () => {
               onChange={handlePerPageChange}
               allowDeselect={false}
               data={['5', '10', '20', '50']}
+              defaultValue="10"
             />
             <Text>
               {from}-{to} dari {total}
