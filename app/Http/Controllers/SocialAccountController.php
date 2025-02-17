@@ -5,23 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\SocialAccount;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialAccountController extends Controller
 {
   /**
-   * Redirect to the social provider for authentication (login).
+   * Redirect to the social provider for authentication (login or link).
    */
-  public function loginRedirect($provider)
+  public function redirect($provider)
   {
+    // Store the flow type in session (you can set 'login' or 'link' based on the context)
+    // For example, in your front-end or before calling this method, you'd decide if it's a login or link.
+    $flow = request('flow');  // assuming you're passing the flow type as a query parameter
+    Session::put('oauth_flow', $flow);
+
     // Redirect to the social provider for authentication
     return Socialite::driver($provider)->redirect();
   }
 
   /**
-   * Callback after the user authenticates via the social provider (login).
+   * Callback from the social provider after user authenticates.
    */
-  public function loginCallback($provider)
+  public function callback($provider)
   {
     try {
       // Retrieve the user from the social provider
@@ -34,54 +40,59 @@ class SocialAccountController extends Controller
       ]);
     }
 
-    // Check if the social account already exists in the database
+    // Get the flow from session
+    $flow = Session::get('oauth_flow');
+    Session::forget('oauth_flow');  // Clear session flow after use
+
+    // Handle flow logic based on session
+    if ($flow === 'login') {
+      return $this->handleLoginFlow($socialUser, $provider);
+    }
+
+    if ($flow === 'link') {
+      return $this->handleLinkFlow($socialUser, $provider);
+    }
+
+    return redirect('/login')->with('notification', [
+      'status' => 'error',
+      'title' => 'Flow Tidak Dikenal',
+      'message' => 'Alur autentikasi tidak dikenali. Silakan coba lagi.',
+    ]);
+  }
+
+  /**
+   * Handle the login flow.
+   */
+  private function handleLoginFlow($socialUser, $provider)
+  {
+    // Check if the social account exists in the database
     $socialAccount = SocialAccount::where('provider', $provider)
       ->where('provider_id', $socialUser->getId())
       ->first();
 
     if ($socialAccount) {
-      // If the account exists, log the user in
+      // If the social account exists, log the user in
       Auth::login($socialAccount->user, true);
       return redirect('/dashboard')->with('notification', [
         'status' => 'success',
         'title' => 'Berhasil Masuk Akun',
         'message' => 'Selamat datang kembali, ' . Auth::user()->name . '!',
       ]);
-    }
-
-    // If the account doesn't exist, redirect to link the account
-    return redirect('/login')->with('notification', [
-      'status' => 'info',
-      'title' => 'Akun Tidak Ditemukan',
-      'message' => 'Akun sosial media ini belum ditautkan ke akun internal Anda. Harap tautkan terlebih dahulu.',
-    ]);
-  }
-
-  /**
-   * Redirect to the social provider for authentication (linking).
-   */
-  public function linkRedirect($provider)
-  {
-    // Redirect to the social provider for authentication (linking)
-    return Socialite::driver($provider)->redirect();
-  }
-
-  /**
-   * Callback for linking the social account to the internal account.
-   */
-  public function linkCallback($provider)
-  {
-    try {
-      // Retrieve the user from the social provider
-      $socialUser = Socialite::driver($provider)->user();
-    } catch (Exception $e) {
-      return redirect('/settings')->with('notification', [
-        'status' => 'error',
-        'title' => 'Gagal Menautkan Akun',
-        'message' => 'Gagal menautkan akun sosial media: ' . $e->getMessage(),
+    } else {
+      // If the account doesn't exist, redirect to link the account
+      return redirect('/login')->with('notification', [
+        'status' => 'info',
+        'title' => 'Akun Tidak Ditemukan',
+        'message' => 'Akun sosial media ini belum ditautkan ke akun internal Anda. Harap tautkan terlebih dahulu.',
       ]);
     }
+  }
 
+  /**
+   * Handle the link flow (after OAuth authentication).
+   */
+  private function handleLinkFlow($socialUser, $provider)
+  {
     // Get the currently authenticated user
     $user = Auth::user();
 

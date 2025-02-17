@@ -20,12 +20,12 @@ const Settings = (props) => {
     (acc) => acc.provider === 'google',
   );
 
-  const handleSocialLink = () => {
-    router.get(route('social.link.redirect', { provider: 'google' }));
-  };
+  // const handleSocialLink = () => {
+  //   router.get(route('social.link.redirect', { provider: 'google' }));
+  // };
 
   const handleSocialUnlink = () => {
-    router.post(route('social.unlink', { provider: 'google' }));
+    router.post(route('oauth.unlink', { provider: 'google' }));
   };
 
   return (
@@ -73,10 +73,14 @@ const Settings = (props) => {
               </Button>
             ) : (
               <Button
+                component="a"
                 leftSection={<IconBrandGoogle />}
                 color="gray"
                 variant="outline"
-                onClick={handleSocialLink}
+                href={route('oauth.redirect', {
+                  provider: 'google',
+                  flow: 'link',
+                })}
               >
                 Tautkan Google
               </Button>

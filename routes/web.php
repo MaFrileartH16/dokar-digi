@@ -25,16 +25,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// OAuth login and callback
-Route::get('auth/{provider}/redirect', [SocialAccountController::class, 'loginRedirect'])->name('social.login.redirect');
-Route::get('auth/{provider}/callback', [SocialAccountController::class, 'loginCallback'])->name('social.login.callback');
+// Redirect to OAuth provider for login or link
+Route::get('oauth/{provider}/redirect', [SocialAccountController::class, 'redirect'])->name('oauth.redirect');
 
-// Link a new social account
-Route::get('auth/{provider}/link', [SocialAccountController::class, 'linkRedirect'])->name('social.link.redirect');
-Route::get('auth/{provider}/link/callback', [SocialAccountController::class, 'linkCallback'])->name('social.link.callback');
+// Callback from OAuth provider after user authenticates
+Route::get('oauth/{provider}/callback', [SocialAccountController::class, 'callback'])->name('oauth.callback');
 
 // Unlink a social account
-Route::get('auth/{provider}/unlink', [SocialAccountController::class, 'unlink'])->name('social.unlink');
+Route::get('oauth/{provider}/unlink', [SocialAccountController::class, 'unlink'])->name('oauth.unlink');
 
 
 Route::get('settings', function () {

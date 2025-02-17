@@ -127,8 +127,9 @@ const Login = (props) => {
               leftSection={<IconBrandGoogle />}
               color="gray"
               variant="outline"
-              href={route('social.login.redirect', {
+              href={route('oauth.redirect', {
                 provider: 'google',
+                flow: 'login',
               })}
             >
               Masuk Google
