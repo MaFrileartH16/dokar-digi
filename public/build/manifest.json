@@ -1,74 +1,74 @@
 {
-  "_AuthenticatedLayout-lXzhqsNp.js": {
-    "file": "assets/AuthenticatedLayout-lXzhqsNp.js",
+  "_AuthenticatedLayout-DgyjBKBG.js": {
+    "file": "assets/AuthenticatedLayout-DgyjBKBG.js",
     "name": "AuthenticatedLayout",
     "imports": [
       "resources/js/app.jsx",
-      "_BaseLayout-DGy8oA5S.js"
+      "_BaseLayout-DmaP-xKQ.js"
     ]
   },
-  "_BaseLayout-DGy8oA5S.js": {
-    "file": "assets/BaseLayout-DGy8oA5S.js",
+  "_BaseLayout-DmaP-xKQ.js": {
+    "file": "assets/BaseLayout-DmaP-xKQ.js",
     "name": "BaseLayout",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_TextInput-B2V87EYd.js": {
-    "file": "assets/TextInput-B2V87EYd.js",
+  "_TextInput-DuMVqA3V.js": {
+    "file": "assets/TextInput-DuMVqA3V.js",
     "name": "TextInput",
     "imports": [
-      "_BaseLayout-DGy8oA5S.js",
+      "_BaseLayout-DmaP-xKQ.js",
       "resources/js/app.jsx"
     ]
   },
   "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-ekBTQRw8.js",
+    "file": "assets/Login-kUnvngmW.js",
     "name": "Login",
     "src": "resources/js/Pages/Auth/Login.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_TextInput-B2V87EYd.js",
-      "_BaseLayout-DGy8oA5S.js"
+      "_TextInput-DuMVqA3V.js",
+      "_BaseLayout-DmaP-xKQ.js"
     ]
   },
   "resources/js/Pages/Dashboard.jsx": {
-    "file": "assets/Dashboard-DvLWgJMV.js",
+    "file": "assets/Dashboard-ChM_jSnY.js",
     "name": "Dashboard",
     "src": "resources/js/Pages/Dashboard.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-lXzhqsNp.js",
-      "_BaseLayout-DGy8oA5S.js"
+      "_AuthenticatedLayout-DgyjBKBG.js",
+      "_BaseLayout-DmaP-xKQ.js"
     ]
   },
   "resources/js/Pages/Settings.jsx": {
-    "file": "assets/Settings-Dkc1UTnK.js",
+    "file": "assets/Settings-Ces3XO9U.js",
     "name": "Settings",
     "src": "resources/js/Pages/Settings.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_TextInput-B2V87EYd.js",
-      "_AuthenticatedLayout-lXzhqsNp.js",
-      "_BaseLayout-DGy8oA5S.js"
+      "_TextInput-DuMVqA3V.js",
+      "_AuthenticatedLayout-DgyjBKBG.js",
+      "_BaseLayout-DmaP-xKQ.js"
     ]
   },
   "resources/js/Pages/Users/Index.jsx": {
-    "file": "assets/Index-Dhc_0BG1.js",
+    "file": "assets/Index-vhY0SLKV.js",
     "name": "Index",
     "src": "resources/js/Pages/Users/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_BaseLayout-DGy8oA5S.js",
-      "_AuthenticatedLayout-lXzhqsNp.js"
+      "_BaseLayout-DmaP-xKQ.js",
+      "_AuthenticatedLayout-DgyjBKBG.js"
     ]
   },
   "resources/js/Pages/Welcome.jsx": {
-    "file": "assets/Welcome-7gK0J2vS.js",
+    "file": "assets/Welcome-ZOLLk07s.js",
     "name": "Welcome",
     "src": "resources/js/Pages/Welcome.jsx",
     "isDynamicEntry": true,
@@ -77,7 +77,7 @@
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-QTMhs1T5.js",
+    "file": "assets/app-B-wmI_wZ.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,

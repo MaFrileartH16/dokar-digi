@@ -64,10 +64,13 @@ const Settings = (props) => {
           <Stack gap={32}>
             {isGoogleLinked ? (
               <Button
+                component="a"
                 leftSection={<IconBrandGoogle />}
                 color="red"
                 variant="filled"
-                onClick={handleSocialUnlink}
+                href={route('oauth.unlink', {
+                  provider: 'google',
+                })}
               >
                 Lepaskan Google
               </Button>
