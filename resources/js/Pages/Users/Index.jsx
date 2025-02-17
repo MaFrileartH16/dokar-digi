@@ -38,7 +38,7 @@ const Index = () => {
   };
 
   const rows = data.map((user, index) => (
-    <Table.Tr key={user.id} h={48}>
+    <Table.Tr key={user.id} h={48} style={{ whiteSpace: 'nowrap' }}>
       <Table.Td>{from + index}</Table.Td>
       <Table.Td>{user.full_name}</Table.Td>
       <Table.Td>{user.email}</Table.Td>
@@ -57,6 +57,14 @@ const Index = () => {
                 return 'gray';
             }
           })()}
+          styles={{
+            label: {
+              whiteSpace: 'nowrap',
+              overflow: 'visible',
+              textOverflow: 'clip',
+              minWidth: 'auto',
+            },
+          }}
         >
           {user.roles[0] || '-'}
         </Badge>
@@ -81,7 +89,7 @@ const Index = () => {
 
         {/* Tambahkan wrapper dengan overflow */}
         <div style={{ overflowX: 'auto' }}>
-          <Table style={{ minWidth: '100px' }}>
+          <Table style={{ minWidth: '100px', whiteSpace: 'nowrap' }}>
             <Table.Thead h={48}>
               <Table.Tr>
                 <Table.Th>#</Table.Th>

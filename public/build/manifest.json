@@ -1,53 +1,53 @@
 {
-  "_AuthenticatedLayout-DmujdTrf.js": {
-    "file": "assets/AuthenticatedLayout-DmujdTrf.js",
+  "_AuthenticatedLayout-CGCXYyNI.js": {
+    "file": "assets/AuthenticatedLayout-CGCXYyNI.js",
     "name": "AuthenticatedLayout",
     "imports": [
       "resources/js/app.jsx",
-      "_BaseLayout-fPkmp7zz.js"
+      "_BaseLayout-BkhXcudP.js"
     ]
   },
-  "_BaseLayout-fPkmp7zz.js": {
-    "file": "assets/BaseLayout-fPkmp7zz.js",
+  "_BaseLayout-BkhXcudP.js": {
+    "file": "assets/BaseLayout-BkhXcudP.js",
     "name": "BaseLayout",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
   "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-R9aub_wT.js",
+    "file": "assets/Login-B9Li7yih.js",
     "name": "Login",
     "src": "resources/js/Pages/Auth/Login.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_BaseLayout-fPkmp7zz.js"
+      "_BaseLayout-BkhXcudP.js"
     ]
   },
   "resources/js/Pages/Dashboard.jsx": {
-    "file": "assets/Dashboard-BXtRa_zE.js",
+    "file": "assets/Dashboard-DHqYR73S.js",
     "name": "Dashboard",
     "src": "resources/js/Pages/Dashboard.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-DmujdTrf.js",
-      "_BaseLayout-fPkmp7zz.js"
+      "_AuthenticatedLayout-CGCXYyNI.js",
+      "_BaseLayout-BkhXcudP.js"
     ]
   },
   "resources/js/Pages/Users/Index.jsx": {
-    "file": "assets/Index-Dq2eu7tG.js",
+    "file": "assets/Index-Dr42DRE6.js",
     "name": "Index",
     "src": "resources/js/Pages/Users/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_BaseLayout-fPkmp7zz.js",
-      "_AuthenticatedLayout-DmujdTrf.js"
+      "_BaseLayout-BkhXcudP.js",
+      "_AuthenticatedLayout-CGCXYyNI.js"
     ]
   },
   "resources/js/Pages/Welcome.jsx": {
-    "file": "assets/Welcome-DOzmKxc4.js",
+    "file": "assets/Welcome-B-TVBTNx.js",
     "name": "Welcome",
     "src": "resources/js/Pages/Welcome.jsx",
     "isDynamicEntry": true,
@@ -56,7 +56,7 @@
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-B-HPwJse.js",
+    "file": "assets/app-B93zT5Zm.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
