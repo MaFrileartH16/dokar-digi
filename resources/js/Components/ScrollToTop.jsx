@@ -15,7 +15,7 @@ const ScrollToTop = () => {
       <Transition transition="fade" mounted={scroll.y > 0}>
         {(transitionStyles) => (
           <Tooltip
-            label="Scroll to top"
+            label="Gulir ke atas"
             position="top-end"
             offset={8}
             transitionProps={{ transition: 'fade', duration: 200 }}

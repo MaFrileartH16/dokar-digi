@@ -19,14 +19,14 @@ const Select = ({ label, description, error, ...props }) => {
         {...props}
         styles={{
           input: {
-            padding:
-              props.leftSection || (props.rightSection && '0 16px 0px 56px'),
+            // padding:
+            //   props.leftSection || (props.rightSection && '0 16px 0px 56px'),
             borderColor: error ? 'red' : undefined,
           },
-          section: (props.leftSection || props.rightSection) && {
-            width: 24,
-            margin: '0 16px',
-          },
+          // section: (props.leftSection || props.rightSection) && {
+          //   width: 24,
+          //   margin: '0 16px',
+          // },
         }}
       />
 

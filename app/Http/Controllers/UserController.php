@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,61 +12,63 @@ class UserController extends Controller
 {
   public function index(Request $request)
   {
-    $perPage = $request->input('per_page', 5); // Default 5 jika tidak ada input
-
     return Inertia::render('Users/Index', [
       'users' => User::with('roles')
         ->whereDoesntHave('roles', fn($query) => $query->where('name', 'Admin'))
-        ->paginate($perPage)
-        ->through(fn($user) => $user->only(['id', 'full_name', 'email']) + [
+        ->get()  // Removed pagination
+        ->map(fn($user) => $user->only(['id', 'full_name', 'email']) + [
             'roles' => $user->roles->pluck('name')
           ]),
-      'filters' => [
-        'per_page' => $perPage, // Simpan nilai agar tidak hilang saat reload
-      ],
+      'filters' => [],
       'notification' => session()->pull('notification'),
     ]);
   }
 
-
   public function store(Request $request)
   {
-    User::create([
-      ...$request->only(['name', 'email']),
+    $user = User::create([
+      ...$request->only(['full_name', 'email', 'username']),
       'password' => Hash::make($request->password),
     ]);
+    $user->assignRole($request->role);
 
     return to_route('users.index')->with('notification', [
       'status' => 'success',
-      'title' => 'User Created',
-      'message' => 'User has been successfully created.',
+      'title' => 'Pengguna Dibuat',
+      'message' => 'Pengguna telah berhasil dibuat.',
     ]);
   }
 
   public function create()
   {
-    return Inertia::render('Users/Create');
+    return Inertia::render('Users/Create', [
+      'notification' => session()->pull('notification'),
+      'roles' => Role::where('name', '!=', 'Admin')->pluck('name')
+    ]);
   }
 
   public function edit(User $user)
   {
     return Inertia::render('Users/Edit', [
-      'user' => $user->only(['id', 'full_name', 'email']),
+      'user' => $user->toArray() + [
+          'roles' => $user->roles->pluck('name')->toArray(),  // Plucking the role names of the specific user
+        ],
       'notification' => session()->pull('notification'),
+      'roles' => Role::where('name', '!=', 'Admin')->pluck('name') // All roles except 'Admin'
     ]);
   }
 
   public function update(Request $request, User $user)
   {
     $user->update([
-      ...$request->only(['name', 'email']),
-      'password' => $request->filled('password') ? Hash::make($request->password) : $user->password,
+      ...$request->only(['full_name', 'email', 'username']),
+      'password' => $request->filled('password') ? $request->password : $user->password,
     ]);
 
     return to_route('users.index')->with('notification', [
       'status' => 'success',
-      'title' => 'User Updated',
-      'message' => 'User information has been successfully updated.',
+      'title' => 'Pengguna Diperbarui',
+      'message' => 'Informasi pengguna telah berhasil diperbarui.',
     ]);
   }
 
@@ -75,8 +78,8 @@ class UserController extends Controller
 
     return to_route('users.index')->with('notification', [
       'status' => 'success',
-      'title' => 'User Deleted',
-      'message' => 'User has been successfully deleted.',
+      'title' => 'Pengguna Dihapus',
+      'message' => 'Pengguna telah berhasil dihapus.',
     ]);
   }
 }

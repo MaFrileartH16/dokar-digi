@@ -1,25 +1,14 @@
+import { Button } from '@/Components/Index.jsx';
 import { router, usePage } from '@inertiajs/react';
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Stack,
-  Title,
-} from '@mantine/core';
+import { ActionIcon, Box, Divider, Flex, Stack, Title } from '@mantine/core';
 import {
   IconArchive,
   IconChevronLeft,
   IconChevronRight,
   IconDashboard,
-  IconDashboardFilled,
   IconFile,
-  IconFileFilled,
   IconShieldLock,
-  IconShieldLockFilled,
   IconUser,
-  IconUserFilled,
 } from '@tabler/icons-react';
 import { useState } from 'react';
 
@@ -36,8 +25,7 @@ const AuthenticatedNavBar = () => {
   const navItems = [
     {
       label: 'Dasbor',
-      leftSection: (isActive) =>
-        isActive ? <IconDashboardFilled /> : <IconDashboard />,
+      leftSection: <IconDashboard />,
       route: 'dashboard',
       onClick: () => router.get(route('dashboard')),
     },
@@ -45,15 +33,13 @@ const AuthenticatedNavBar = () => {
       ? [
           {
             label: 'Pengguna',
-            leftSection: (isActive) =>
-              isActive ? <IconUserFilled /> : <IconUser />,
+            leftSection: <IconUser />,
             route: 'users',
             onClick: () => router.get(route('users.index')),
           },
           {
             label: 'Peran',
-            leftSection: (isActive) =>
-              isActive ? <IconShieldLockFilled /> : <IconShieldLock />,
+            leftSection: <IconShieldLock />,
             route: 'roles',
             onClick: () => router.get(route('roles.index')),
           },
@@ -61,7 +47,7 @@ const AuthenticatedNavBar = () => {
       : []),
     {
       label: 'Dokumen',
-      leftSection: (isActive) => (isActive ? <IconFileFilled /> : <IconFile />),
+      leftSection: <IconFile />,
       route: 'documents',
       onClick: () => router.get(route('documents.index')),
     },
@@ -102,26 +88,33 @@ const AuthenticatedNavBar = () => {
       <Divider />
 
       <Box flex={1} p={16}>
-        {navItems.map(({ label, route, leftSection, ...props }) => {
+        {navItems.map(({ label, route, onClick, ...props }) => {
           const isActive = url.includes(route);
 
           return (
-            <Button
-              key={label}
-              color={isActive ? 'blue' : 'gray'}
-              display="flex"
-              fullWidth
-              variant="subtle"
-              leftSection={leftSection(isActive)}
-              {...props}
-              styles={{
-                root: {
-                  padding: collapsed ? '0 11px' : '0 16px',
-                },
-              }}
-            >
-              {label}
-            </Button>
+            <div key={label}>
+              {collapsed ? (
+                <ActionIcon
+                  variant="subtle"
+                  color={isActive ? 'blue' : 'gray'}
+                  onClick={onClick}
+                >
+                  {props.leftSection}
+                </ActionIcon>
+              ) : (
+                <Button
+                  key={label}
+                  color={isActive ? 'blue' : 'gray'}
+                  display="flex"
+                  fullWidth
+                  variant="subtle"
+                  onClick={onClick}
+                  {...props}
+                >
+                  {label}
+                </Button>
+              )}
+            </div>
           );
         })}
       </Box>

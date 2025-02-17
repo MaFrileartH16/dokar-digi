@@ -60,7 +60,7 @@ const theme = createTheme({
         },
         label: {
           fontSize: 16,
-          marginLeft: 16,
+          // marginLeft: 16,
         },
         section: {
           margin: 0,
@@ -109,18 +109,18 @@ const theme = createTheme({
     Select: Select.extend({
       defaultProps: {
         checkIconPosition: 'right',
-        comboboxProps: { shadow: 'xs' },
-        searchable: true,
-        allowDeselect: false,
-        nothingFoundMessage: 'Nothing found...',
+        comboboxProps: { shadow: 'none' },
+        // searchable: true,
+        // allowDeselect: false,
+        // nothingFoundMessage: 'Nothing found...',
       },
       styles: {
         root: {
           margin: 0,
         },
-        // section: { width: 24, margin: '0 16px' },
+        section: { width: 24, margin: '0 16px' },
         input: {
-          // padding: '0 16px 0px 56px',
+          padding: '0 16px 0px 56px',
           height: 48,
         },
         option: {

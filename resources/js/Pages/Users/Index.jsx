@@ -1,45 +1,28 @@
-import { Select } from '@/Components/Index.jsx';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
-import { router } from '@inertiajs/core';
-import { usePage } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
 import {
   ActionIcon,
   Badge,
   Button,
   Divider,
   Flex,
-  Group,
-  Pagination,
+  Modal,
   Paper,
   Table,
-  Text,
 } from '@mantine/core';
-import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
+import { useDisclosure } from '@mantine/hooks';
+import { IconEdit, IconPlus, IconTrash } from '@tabler/icons-react';
 import { useState } from 'react';
 
 const Index = () => {
-  const { users, filters } = usePage().props;
-  const { data, total, from, to, last_page, current_page, path } = users;
+  const { users } = usePage().props;
 
-  const [perPage, setPerPage] = useState(filters.per_page || 5);
-  const [activePage, setActivePage] = useState(current_page || 1);
+  const [opened, { open, close }] = useDisclosure(false); // Modal state for delete confirmation
+  const [userToDelete, setUserToDelete] = useState(null); // Store the user to delete
 
-  const handlePerPageChange = (value) => {
-    setPerPage(value);
-    setActivePage(1);
-    router.get(path, { page: 1, per_page: value });
-  };
-
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= last_page) {
-      setActivePage(page);
-      router.get(path, { page, per_page: perPage });
-    }
-  };
-
-  const rows = data.map((user, index) => (
+  const rows = users.map((user, index) => (
     <Table.Tr key={user.id} h={48} style={{ whiteSpace: 'nowrap' }}>
-      <Table.Td>{from + index}</Table.Td>
+      <Table.Td>{index + 1}</Table.Td>
       <Table.Td>{user.full_name}</Table.Td>
       <Table.Td>{user.email}</Table.Td>
       <Table.Td>
@@ -69,8 +52,45 @@ const Index = () => {
           {user.roles[0] || '-'}
         </Badge>
       </Table.Td>
+      <Table.Td>
+        <Flex gap={8} justify="flex-start">
+          {/* Edit Button */}
+          <ActionIcon
+            color="yellow"
+            variant="subtle"
+            onClick={() => handleEdit(user.id)}
+          >
+            <IconEdit />
+          </ActionIcon>
+
+          {/* Delete Button */}
+          <ActionIcon
+            color="red"
+            variant="subtle"
+            onClick={() => handleDelete(user)}
+          >
+            <IconTrash />
+          </ActionIcon>
+        </Flex>
+      </Table.Td>
     </Table.Tr>
   ));
+
+  const handleEdit = (userId) => {
+    router.get(route('users.edit', userId)); // Navigate to edit page
+  };
+
+  const handleDelete = (user) => {
+    setUserToDelete(user); // Set the user to be deleted in state
+    open(); // Open delete confirmation modal
+  };
+
+  const confirmDelete = () => {
+    if (userToDelete) {
+      router.delete(route('users.destroy', userToDelete.id)); // Send delete request
+    }
+    close(); // Close modal after action
+  };
 
   return (
     <AuthenticatedLayout
@@ -82,102 +102,41 @@ const Index = () => {
     >
       <Paper shadow="none">
         <Flex p={16} justify="space-between">
-          <Button>Tambah Pengguna</Button>
+          <ActionIcon onClick={() => router.get(route('users.create'))}>
+            <IconPlus />
+          </ActionIcon>
         </Flex>
 
         <Divider />
 
-        {/* Tambahkan wrapper dengan overflow */}
         <div style={{ overflowX: 'auto' }}>
           <Table style={{ minWidth: '100px', whiteSpace: 'nowrap' }}>
             <Table.Thead h={48}>
               <Table.Tr>
                 <Table.Th>#</Table.Th>
                 <Table.Th>Nama Lengkap</Table.Th>
-                <Table.Th>ALamat Surel</Table.Th>
+                <Table.Th>Alamat Surel</Table.Th>
                 <Table.Th>Peran</Table.Th>
+                <Table.Th>Aksi</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>
           </Table>
         </div>
-
-        <Divider />
-
-        <Group
-          justify="space-between"
-          align="start"
-          p={16}
-          display={{ base: 'flex', md: 'none' }}
-        >
-          <ActionIcon
-            variant="default"
-            onClick={() => handlePageChange(activePage - 1)}
-            disabled={activePage === 1}
-          >
-            <IconChevronLeft />
-          </ActionIcon>
-
-          <Flex
-            gap={4}
-            align="center"
-            direction={{
-              base: 'column',
-              xs: 'row',
-            }}
-          >
-            <Select
-              w={80}
-              value={perPage}
-              onChange={handlePerPageChange}
-              allowDeselect={false}
-              data={['5', '10', '20', '50']}
-              defaultValue="10"
-            />
-
-            <Text align="center">
-              {from}-{to} dari {total}
-            </Text>
-          </Flex>
-
-          <ActionIcon
-            variant="default"
-            onClick={() => handlePageChange(activePage + 1)}
-            disabled={activePage === last_page}
-          >
-            <IconChevronRight />
-          </ActionIcon>
-        </Group>
-
-        <Flex
-          p={16}
-          justify="space-between"
-          align="center"
-          display={{ base: 'none', md: 'flex' }}
-        >
-          <Group>
-            <Select
-              w={80}
-              value={perPage}
-              onChange={handlePerPageChange}
-              allowDeselect={false}
-              data={['5', '10', '20', '50']}
-              defaultValue="10"
-            />
-            <Text>
-              {from}-{to} dari {total}
-            </Text>
-          </Group>
-
-          {/* Desktop Pagination */}
-          <Pagination
-            total={last_page}
-            value={activePage}
-            onChange={handlePageChange}
-            display={{ base: 'none', sm: 'flex' }}
-          />
-        </Flex>
       </Paper>
+
+      {/* Delete Confirmation Modal */}
+      <Modal opened={opened} onClose={close} title="Konfirmasi Hapus Pengguna">
+        <p>Apakah Anda yakin ingin menghapus pengguna ini?</p>
+        <Flex gap={16} justify="flex-end">
+          <Button variant="default" onClick={close}>
+            Batal
+          </Button>
+          <Button color="red" onClick={confirmDelete}>
+            Hapus
+          </Button>
+        </Flex>
+      </Modal>
     </AuthenticatedLayout>
   );
 };
