@@ -9,4 +9,9 @@ use Spatie\Permission\Models\Permission as SpatiePermission;
 class Permission extends SpatiePermission
 {
   use HasFactory, HasUlids;
+
+  public function setNameAttribute($value): void
+  {
+    $this->attributes['name'] = ucwords(strtolower($value));
+  }
 }

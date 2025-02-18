@@ -9,4 +9,9 @@ use Spatie\Permission\Models\Role as SpatieRole;
 class Role extends SpatieRole
 {
   use HasFactory, HasUlids;
+
+  public function setNameAttribute($value): void
+  {
+    $this->attributes['name'] = ucwords(strtolower($value));
+  }
 }

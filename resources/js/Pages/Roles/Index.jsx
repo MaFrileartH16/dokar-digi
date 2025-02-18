@@ -8,9 +8,10 @@ import {
   Modal,
   Paper,
   Table,
+  Tooltip,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconEdit, IconPlus, IconTrash } from '@tabler/icons-react';
+import { IconEdit, IconKey, IconPlus, IconTrash } from '@tabler/icons-react';
 import { useState } from 'react';
 
 const Index = () => {
@@ -25,30 +26,51 @@ const Index = () => {
       <Table.Td>{role.name}</Table.Td> {/* Display the role name */}
       <Table.Td>
         <Flex gap={8} justify="flex-start">
-          {/* Edit Button */}
-          <ActionIcon
-            color="yellow"
-            variant="subtle"
-            onClick={() => handleEdit(role)}
-          >
-            <IconEdit />
-          </ActionIcon>
+          {/* Hak Akses Button with Tooltip */}
+          <Tooltip label="Hak Akses" position="top">
+            <ActionIcon
+              color="green"
+              variant="subtle"
+              onClick={() => handlePermissions(role)} // Handle permissions
+            >
+              <IconKey />
+            </ActionIcon>
+          </Tooltip>
 
-          {/* Delete Button */}
-          <ActionIcon
-            color="red"
-            variant="subtle"
-            onClick={() => handleDelete(role)}
-          >
-            <IconTrash />
-          </ActionIcon>
+          {/* Edit Button with Tooltip */}
+          <Tooltip label="Ubah Peran" position="top">
+            <ActionIcon
+              color="yellow"
+              variant="subtle"
+              onClick={() => handleEdit(role)} // Handle edit
+            >
+              <IconEdit />
+            </ActionIcon>
+          </Tooltip>
+
+          {/* Delete Button with Tooltip */}
+          <Tooltip label="Hapus Peran" position="top">
+            <ActionIcon
+              color="red"
+              variant="subtle"
+              onClick={() => handleDelete(role)} // Handle delete
+            >
+              <IconTrash />
+            </ActionIcon>
+          </Tooltip>
         </Flex>
       </Table.Td>
     </Table.Tr>
   ));
 
+  // Handle route to edit the role
   const handleEdit = (role) => {
-    router.get(route('roles.edit', role)); // Pass the role ID correctly
+    router.get(route('roles.edit', role)); // Navigate to edit page
+  };
+
+  // Handle route to manage role permissions
+  const handlePermissions = (role) => {
+    router.get(route('roles.permissions.index', role)); // Navigate to permissions page
   };
 
   const handleDelete = (role) => {
@@ -58,7 +80,7 @@ const Index = () => {
 
   const confirmDelete = () => {
     if (roleToDelete) {
-      router.delete(route('roles.destroy', { role: roleToDelete })); // Pass the role ID correctly
+      router.delete(route('roles.destroy', { role: roleToDelete })); // Send delete request
     }
     close(); // Close modal after action
   };
@@ -68,7 +90,7 @@ const Index = () => {
       title="Daftar Peran"
       pageHeadings={{
         description:
-          'Kelola peran: tambah, perbarui, dan hapus pren dengan efisien.',
+          'Kelola peran: tambah, perbarui, dan hapus peran dengan efisien.',
       }}
     >
       <Paper shadow="none">

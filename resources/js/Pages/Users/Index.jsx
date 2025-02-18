@@ -9,6 +9,7 @@ import {
   Modal,
   Paper,
   Table,
+  Tooltip,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconEdit, IconPlus, IconTrash } from '@tabler/icons-react';
@@ -54,23 +55,27 @@ const Index = () => {
       </Table.Td>
       <Table.Td>
         <Flex gap={8} justify="flex-start">
-          {/* Edit Button */}
-          <ActionIcon
-            color="yellow"
-            variant="subtle"
-            onClick={() => handleEdit(user)}
-          >
-            <IconEdit />
-          </ActionIcon>
+          {/* Edit Button with Tooltip */}
+          <Tooltip label="Ubah Pengguna" position="top">
+            <ActionIcon
+              color="yellow"
+              variant="subtle"
+              onClick={() => handleEdit(user)}
+            >
+              <IconEdit />
+            </ActionIcon>
+          </Tooltip>
 
-          {/* Delete Button */}
-          <ActionIcon
-            color="red"
-            variant="subtle"
-            onClick={() => handleDelete(user)}
-          >
-            <IconTrash />
-          </ActionIcon>
+          {/* Delete Button with Tooltip */}
+          <Tooltip label="Hapus Pengguna" position="top">
+            <ActionIcon
+              color="red"
+              variant="subtle"
+              onClick={() => handleDelete(user)}
+            >
+              <IconTrash />
+            </ActionIcon>
+          </Tooltip>
         </Flex>
       </Table.Td>
     </Table.Tr>

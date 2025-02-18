@@ -1,4 +1,4 @@
-import{c as o}from"./BaseLayout-DwDLTQup.js";/**
+import{c as o}from"./BaseLayout-dI6DHMUU.js";/**
  * @license @tabler/icons-react v3.30.0 - MIT
  *
  * This source code is licensed under the MIT license.

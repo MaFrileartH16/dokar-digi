@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\SocialAccountController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +26,8 @@ Route::middleware('auth')->group(function () {
 
   Route::resource('users', UserController::class)->middleware('can:viewAny,App\Models\User');
   Route::resource('roles', RoleController::class)->middleware('can:viewAny,App\Models\Role');
+  Route::resource('roles.permissions', PermissionController::class)->middleware('can:viewAny,App\Models\Permission');
+  Route::post('roles/{role}/permissions/give', [RolePermissionController::class, 'give'])->name('roles.permissions.give');
 });
 
 

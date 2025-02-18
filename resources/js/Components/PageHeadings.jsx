@@ -19,7 +19,9 @@ const PageHeadings = ({ title, breadcrumbs = [], description }) => (
           return (
             <Anchor
               underline={isCurrent ? 'never' : 'hover'}
-              onClick={() => !isCurrent && router.get(route(item.route))}
+              onClick={() =>
+                !isCurrent && router.get(route(item.route, item.data))
+              }
               key={index}
               c={isCurrent ? 'gray' : 'blue'}
             >

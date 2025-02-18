@@ -10,17 +10,7 @@ class RolePermissionSeeder extends Seeder
 {
   public function run(): void
   {
-    $adminRole = Role::where('name', 'Admin')->first();
-
-    $permissions = Permission::whereIn('name', [
-      'create user',
-      'read user',
-      'update user',
-      'delete user',
-    ])->get();
-
-    foreach ($permissions as $permission) {
-      $adminRole->givePermissionTo($permission);
-    }
+    Role::where('name', 'Admin')->first()->givePermissionTo(Permission::all());
+    Role::where('name', 'Pustakawan')->first()->givePermissionTo(Permission::where('name', 'like', '%dokumen%')->get());
   }
 }

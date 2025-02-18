@@ -2,6 +2,7 @@ import {
   ActionIcon,
   Avatar,
   Button,
+  Checkbox,
   createTheme,
   Image,
   Menu,
@@ -221,6 +222,11 @@ const theme = createTheme({
         itemSection: {
           margin: 0,
         },
+      },
+    }),
+    Checkbox: Checkbox.extend({
+      defaultProps: {
+        size: 24,
       },
     }),
   },
