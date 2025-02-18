@@ -16,7 +16,6 @@ class RoleController extends Controller
     ]);
   }
 
-
   public function store(Request $request)
   {
     $request->validate([
@@ -29,8 +28,8 @@ class RoleController extends Controller
 
     return to_route('roles.index')->with('notification', [
       'status' => 'success',
-      'title' => 'Role Created',
-      'message' => 'The role has been successfully created.',
+      'title' => 'Peran Dibuat',
+      'message' => 'Peran telah berhasil dibuat.',
     ]);
   }
 
@@ -61,8 +60,8 @@ class RoleController extends Controller
 
     return to_route('roles.index')->with('notification', [
       'status' => 'success',
-      'title' => 'Role Updated',
-      'message' => 'The role has been successfully updated.',
+      'title' => 'Peran Diperbarui',
+      'message' => 'Peran telah berhasil diperbarui.',
     ]);
   }
 
@@ -72,8 +71,8 @@ class RoleController extends Controller
     if ($role->name === 'Admin') {
       return to_route('roles.index')->with('notification', [
         'status' => 'error',
-        'title' => 'Cannot Delete Role',
-        'message' => 'The "Admin" role cannot be deleted.',
+        'title' => 'Tidak Bisa Menghapus Peran',
+        'message' => 'Peran "Admin" tidak bisa dihapus.',
       ]);
     }
 
@@ -81,8 +80,8 @@ class RoleController extends Controller
 
     return to_route('roles.index')->with('notification', [
       'status' => 'success',
-      'title' => 'Role Deleted',
-      'message' => 'The role has been successfully deleted.',
+      'title' => 'Peran Dihapus',
+      'message' => 'Peran telah berhasil dihapus.',
     ]);
   }
 }

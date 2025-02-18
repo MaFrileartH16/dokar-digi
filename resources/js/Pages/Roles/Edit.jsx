@@ -24,12 +24,12 @@ const Edit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    form.put(route('roles.update', role.id), {}); // Use PUT request to update the role
+    form.put(route('roles.update', role)); // Use PUT request to update the role
   };
 
   return (
     <AuthenticatedLayout
-      title="Edit Peran"
+      title="Ubah Peran"
       pageHeadings={{
         description: 'Perbarui peran yang ada di sistem',
         breadcrumbs: [
@@ -38,7 +38,7 @@ const Edit = () => {
             route: 'roles.index',
           },
           {
-            title: 'Edit',
+            title: 'Ubah',
           },
         ],
       }}

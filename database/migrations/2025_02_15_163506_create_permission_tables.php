@@ -26,7 +26,7 @@ return new class extends Migration {
     Schema::create($tableNames['permissions'], function (Blueprint $table) {
       //$table->engine('InnoDB');
 //      $table->bigIncrements('id'); // permission id
-      $table->ulid('ulid')->primary()->unique();
+      $table->ulid('id')->primary()->unique();
       $table->string('name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
       $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
       $table->timestamps();
@@ -37,7 +37,7 @@ return new class extends Migration {
     Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
       //$table->engine('InnoDB');
 //      $table->bigIncrements('id'); // role id
-      $table->ulid('ulid')->primary()->unique();
+      $table->ulid('id')->primary()->unique();
       if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
         $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
         $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
@@ -62,7 +62,7 @@ return new class extends Migration {
 
       $table->foreign($pivotPermission)
 //        ->references('id') // permission id
-        ->references('ulid') // permission id
+        ->references('id') // permission id
         ->on($tableNames['permissions'])
         ->onDelete('cascade');
       if ($teams) {
@@ -88,7 +88,7 @@ return new class extends Migration {
 
       $table->foreign($pivotRole)
 //        ->references('id') // role id
-        ->references('ulid') // role id
+        ->references('id') // role id
         ->on($tableNames['roles'])
         ->onDelete('cascade');
       if ($teams) {
@@ -111,13 +111,13 @@ return new class extends Migration {
 
       $table->foreign($pivotPermission)
 //        ->references('id') // permission id
-        ->references('ulid') // permission id
+        ->references('id') // permission id
         ->on($tableNames['permissions'])
         ->onDelete('cascade');
 
       $table->foreign($pivotRole)
 //        ->references('id') // role id
-        ->references('ulid') // role id
+        ->references('id') // role id
         ->on($tableNames['roles'])
         ->onDelete('cascade');
 

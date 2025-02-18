@@ -58,7 +58,7 @@ const Index = () => {
           <ActionIcon
             color="yellow"
             variant="subtle"
-            onClick={() => handleEdit(user.id)}
+            onClick={() => handleEdit(user)}
           >
             <IconEdit />
           </ActionIcon>
@@ -87,7 +87,7 @@ const Index = () => {
 
   const confirmDelete = () => {
     if (userToDelete) {
-      router.delete(route('users.destroy', userToDelete.id)); // Send delete request
+      router.delete(route('users.destroy', userToDelete)); // Send delete request
     }
     close(); // Close modal after action
   };

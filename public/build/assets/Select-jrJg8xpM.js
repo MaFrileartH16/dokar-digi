@@ -1,0 +1,1 @@
+import{j as s,B as o,d as c}from"./app-C_9SigtY.js";import{a as r}from"./BaseLayout-DwDLTQup.js";const a=({label:x,description:e,error:t,...m})=>s.jsxs(o,{children:[x&&s.jsx(r,{fw:500,mb:e?0:8,children:x}),e&&s.jsx(r,{c:"gray",mb:8,children:e}),s.jsx(c,{...m,styles:{input:{borderColor:t?"red":void 0}}}),t&&s.jsx(r,{c:"red",mt:8,children:t})]});export{a as S};

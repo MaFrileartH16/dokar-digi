@@ -29,7 +29,7 @@ const Index = () => {
           <ActionIcon
             color="yellow"
             variant="subtle"
-            onClick={() => handleEdit(role.id)}
+            onClick={() => handleEdit(role)}
           >
             <IconEdit />
           </ActionIcon>
@@ -47,8 +47,8 @@ const Index = () => {
     </Table.Tr>
   ));
 
-  const handleEdit = (roleId) => {
-    router.get(route('roles.edit', { role: roleId })); // Pass the role ID correctly
+  const handleEdit = (role) => {
+    router.get(route('roles.edit', role)); // Pass the role ID correctly
   };
 
   const handleDelete = (role) => {
@@ -58,7 +58,7 @@ const Index = () => {
 
   const confirmDelete = () => {
     if (roleToDelete) {
-      router.delete(route('roles.destroy', { role: roleToDelete.id })); // Pass the role ID correctly
+      router.delete(route('roles.destroy', { role: roleToDelete })); // Pass the role ID correctly
     }
     close(); // Close modal after action
   };
