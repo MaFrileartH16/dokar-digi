@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SocialAccountController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
   Route::resource('users', UserController::class)->middleware('can:viewAny,App\Models\User');
+  Route::resource('roles', RoleController::class)->middleware('can:viewAny,App\Models\Role');
 });
 
 
