@@ -1,1 +1,0 @@
-import{j as s,B as o,d as c}from"./app-30pLy9sV.js";import{b as r}from"./BaseLayout-dI6DHMUU.js";const l=({label:x,description:e,error:t,...m})=>s.jsxs(o,{children:[x&&s.jsx(r,{fw:500,mb:e?0:8,children:x}),e&&s.jsx(r,{c:"gray",mb:8,children:e}),s.jsx(c,{...m,styles:{input:{borderColor:t?"red":void 0}}}),t&&s.jsx(r,{c:"red",mt:8,children:t})]});export{l as S};

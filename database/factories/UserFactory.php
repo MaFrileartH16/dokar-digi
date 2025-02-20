@@ -17,6 +17,7 @@ class UserFactory extends Factory
     return [
       'full_name' => $full_name,
       'username' => $username,
+      'occupation' => fake()->jobTitle(),
       'email' => $email,
       'password' => $username,
     ];

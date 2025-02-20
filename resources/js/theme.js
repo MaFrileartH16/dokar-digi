@@ -12,6 +12,7 @@ import {
   Pagination,
   PasswordInput,
   Select,
+  Table,
   TextInput,
   ThemeIcon,
 } from '@mantine/core';
@@ -227,6 +228,16 @@ const theme = createTheme({
     Checkbox: Checkbox.extend({
       defaultProps: {
         size: 24,
+      },
+    }),
+    Table: Table.extend({
+      defaultProps: {
+        horizontalSpacing: 16,
+        verticalSpacing: 16,
+        striped: true,
+        highlightOnHover: true,
+        withTableBorder: true,
+        withColumnBorders: true,
       },
     }),
   },
