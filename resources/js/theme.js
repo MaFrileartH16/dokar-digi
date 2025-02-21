@@ -120,9 +120,9 @@ const theme = createTheme({
         root: {
           margin: 0,
         },
-        section: { width: 24, margin: '0 16px' },
+        // section: { width: 24, margin: '0 16px' },
         input: {
-          padding: '0 16px 0px 56px',
+          // padding: '0 16px 0px 56px',
           height: 48,
         },
         option: {
@@ -208,11 +208,14 @@ const theme = createTheme({
     }),
     Menu: Menu.extend({
       styles: {
+        label: {
+          // padding: 0,
+        },
         dropdown: {
           padding: 8,
         },
         item: {
-          padding: 16,
+          // padding: 0,
           height: 48,
         },
         itemLabel: {

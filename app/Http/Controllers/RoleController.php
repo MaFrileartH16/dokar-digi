@@ -84,4 +84,9 @@ class RoleController extends Controller
       'message' => 'Peran telah berhasil dihapus.',
     ]);
   }
+
+  public function change()
+  {
+    
+  }
 }

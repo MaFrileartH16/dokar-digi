@@ -9,7 +9,7 @@ class RoleSeeder extends Seeder
 {
   public function run(): void
   {
-    collect(['Admin', 'Officer', 'Approver'])
+    collect(['Admin', 'Petugas', 'Penyetuju Mutu', 'Penyetuju Laporan & Surat'])
       ->each(fn($role) => Role::create(['name' => $role]));
   }
 }
